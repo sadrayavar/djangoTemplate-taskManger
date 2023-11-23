@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "user",
+    "task",
 ]
 
 MIDDLEWARE = [
@@ -46,6 +48,7 @@ TEMPLATES = [
         "DIRS": [
             BASE_DIR / "taskManager/templates",
             BASE_DIR / "user/templates",
+            BASE_DIR / "task/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
