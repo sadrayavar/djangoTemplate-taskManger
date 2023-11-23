@@ -5,3 +5,7 @@ from django.db import models
 Class userInfo(models.model):
     firstName = models.CharField(max_length=30)
     lastName = models.CharField(max_length=30)
+
+class userTasks(models.model):
+    title = models.CharField(max_length=50)
+    deadLine = models.DateTimeField()
