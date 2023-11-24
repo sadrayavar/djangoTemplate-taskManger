@@ -28,10 +28,13 @@
           <button type="submit" class="btn btn-primary">Login</button>
         </div>
         <div class="text-center mt-3">
-          <a class="link-light" href="../register/">You dont have an account?</a>
+          <a class="link-light" href="{% url 'registerUser' %}"
+            >You dont have an account?</a
+          >
         </div>
       </form>
     </div>
   </div>
 </div>
+
 {% endblock %}

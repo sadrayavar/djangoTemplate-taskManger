@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.homePage),
-    path("user/", include("user.urls")),
-    path("task/", include("task.urls")),
+    path("", views.homePage, name="homePage"),
+    path("user/", include("user.urls"), name="userPage"),
+    path("task/", include("task.urls"), name="taskPage"),
 ]
