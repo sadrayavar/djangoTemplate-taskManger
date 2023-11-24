@@ -1,15 +1,19 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %}
 {% endblock title %}
 {% block content %}
-    <a href="{% url 'taskList' %}" class="btn btn-primary ">
+    <a href=".." class="btn btn-primary ">
         <div>Back</div>
     </a>
-    <h1>{{ task.title }}</h1>
-    <div>{{ task.priority }}</div>
-    <div>{{ task.state }}</div>
-    <div>{{ task.deadline_date }}</div>
-    <div>{{ task.deadline_time }}</div>
-    <button class="btn btn-secondary">Edit</button>
-    <button class="btn btn-danger">Delete</button>
+    <div class="card">
+        <div class="card-body">
+            <h1>{{ task.title }}</h1>
+            <div>{{ task.priority }}</div>
+            <div>{{ task.state }}</div>
+            <div>{{ task.deadline_date }}</div>
+            <div>{{ task.deadline_time }}</div>
+        </div>
+        <a href="{% url "editTask" task.id %}" class="btn btn-secondary">Edit</a>
+        <a href="{% url "deleteTask" task.id %}" class="btn btn-danger">Delete</a>
+    </div>
 {% endblock content %}
