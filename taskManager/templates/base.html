@@ -13,12 +13,13 @@
       {% endblock title %}
     </title>
   </head>
+  <a href="#content" style="height: 1px; width: 1px; position: absolute; overflow: hidden; top: -10px;">Skip to the main contetn</a>
   <body>
     {% block header %}
       {% include "header.html" %}
     {% endblock header %}
     {% include "messages.html" %}
-    <div class="content m-3">
+    <div id="content" class="content m-3">
       {% block content %}
       {% endblock content %}
     </div>
