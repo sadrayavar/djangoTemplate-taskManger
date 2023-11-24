@@ -2,6 +2,9 @@
 {% block title %}
 {% endblock title %}
 {% block content %}
+    <a href="{% url 'taskList' %}" class="btn btn-primary ">
+        <div>Back</div>
+    </a>
     <h1>{{ task.title }}</h1>
     <div>{{ task.priority }}</div>
     <div>{{ task.state }}</div>

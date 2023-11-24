@@ -3,6 +3,9 @@
   Tasks
 {% endblock title %}
 {% block content %}
+  <a href="{% url 'taskList' %}" class="btn btn-primary ">
+    <div>Back</div>
+  </a>
   <form method="post" action="{% url 'taskList' %}">
     {% csrf_token %}
     <div class="form-group">{{ form.title.label_tag }} {{ form.title }}</div>

@@ -3,6 +3,9 @@
     List of Tasks
 {% endblock title %}
 {% block content %}
+    <a href="{% url 'addTask' %}" class="btn btn-primary ">
+        <div>Add</div>
+    </a>
     {% for task in tasks %}
         <a href="{% url 'singleTask' task.id %}">{{ task.title }}</a>
         <br>
