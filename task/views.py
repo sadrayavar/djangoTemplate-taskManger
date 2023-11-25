@@ -6,7 +6,7 @@ from .forms import TaskForm
 from .models import Task
 
 
-# @login_required(login_url="/account/login/")
+@login_required(login_url="loginUser")
 def addTask(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -19,19 +19,19 @@ def addTask(request):
     return render(request, "taskForm.html", {"form": form})
 
 
-# @login_required(login_url="/accounts/login/")
+@login_required(login_url="loginUser")
 def taskList(request):
     tasks = Task.objects.all()
     return render(request, "taskList.html", {"tasks": tasks})
 
 
-# @login_required(login_url="/accounts/login/")
+@login_required(login_url="loginUser")
 def singleTask(request, taskId):
     taskDetail = Task.objects.get(id=taskId)
     return render(request, "singleTask.html", {"task": taskDetail})
 
 
-# @login_required(login_url="/accounts/login/")
+@login_required(login_url="loginUser")
 def deleteTask(request, taskId):
     Task.objects.get(id=taskId).delete()
     messages.success(
@@ -42,17 +42,14 @@ def deleteTask(request, taskId):
     return redirect("taskList")
 
 
-# @login_required(login_url="/accounts/login/")
+@login_required(login_url="loginUser")  
 def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
     if request.method == "POST":
-        form = TaskForm(request.POST, instance=task)
+        form = TaskForm(request.POST)
         if form.is_valid():
             task.save()
             return redirect(".")
     else:
-        print(task)
-        print(task.title)
-        form = TaskForm(request.POST, instance=task)
-        print(form)
+        form = TaskForm(instance=task)
         return render(request, "taskForm.html", {"form": form})
