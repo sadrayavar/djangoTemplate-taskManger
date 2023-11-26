@@ -6,9 +6,6 @@ create pages: # TODO Zahra
   - my comments # user can see its own comments from this page --> _
   - profile # user can see his/hers profile details --> _
 
-user authentication # TODO sadra
+user authentication # (done) sadra
 comment section: TODO sadra
-
-
-
-
+fix edit: TODO sadra
