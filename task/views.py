@@ -32,19 +32,24 @@ def addTask(request):
 @login_required(login_url="loginUser")
 def userTasks(request):
     tasks = Task.objects.filter(user=request.user)
-    return render(request, "taskList.html", {"tasks": tasks})
+
+    context = {"tasks": tasks, "count": len(tasks)}
+    return render(request, "taskList.html", context)
 
 
 @login_required(login_url="loginUser")
 def allTasks(request):
     tasks = Task.objects.all()
+
+    context = {"tasks": tasks, "count": len(tasks)}
     return render(request, "taskList.html", {"tasks": tasks})
 
 
 @login_required(login_url="loginUser")
 def singleTask(request, taskId):
     task = Task.objects.get(id=taskId)
-    context = {"task": task, "user": request.user == task.user}
+
+    context = {"task": task, "owner": request.user == task.user}
     return render(request, "singleTask.html", context)
 
 
