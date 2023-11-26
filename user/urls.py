@@ -10,7 +10,7 @@ urlpatterns = [
     ),
     path(
         "logout/",
-        auth_views.LogoutView.as_view(),
+        auth_views.LogoutView.as_view(next_page="taskList"),
         name="logoutUser",
     ),
     path("register/", views.registerUser, name="registerUser"),
