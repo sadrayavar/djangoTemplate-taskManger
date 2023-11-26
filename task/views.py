@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponseForbidden
 from .forms import TaskForm
 from .models import Task
 
@@ -43,32 +44,39 @@ def allTasks(request):
 @login_required(login_url="loginUser")
 def singleTask(request, taskId):
     taskDetail = Task.objects.get(id=taskId)
-    return render(
-        request,
-        "singleTask.html",
-        {"task": taskDetail},
-    )
+    return render(request, "singleTask.html", {"task": taskDetail})
 
 
 @login_required(login_url="loginUser")
 def deleteTask(request, taskId):
-    Task.objects.get(id=taskId).delete()
-    messages.success(
-        request,
-        f"To do with id of {taskId} is deleted succesfully.",
-        extra_tags="success",
-    )
-    return redirect("allTasks")
+    task = Task.objects.get(id=taskId)  # .delete()
+
+    if task.user == request.user:
+        task.delete()
+        messages.success(
+            request,
+            f"To do with id of {taskId} is deleted succesfully.",
+            extra_tags="success",
+        )
+        return redirect("allTasks")
+
+    else:
+        return HttpResponseForbidden()
 
 
 @login_required(login_url="loginUser")
 def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
     if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task.save()
-            return redirect(".")
+        if task.user == request.user:
+            form = TaskForm(request.POST, instance=task)
+            if form.is_valid():
+                print(task.title)
+                task.save()
+                print(task.title)
+                return redirect(".")
+        else:
+            return HttpResponseForbidden()
     else:
         form = TaskForm(instance=task)
         return render(request, "taskForm.html", {"form": form})
