@@ -1,0 +1,7 @@
+create pages: # TODO Zahra
+  - tasks # users can see all of the tasks that are made
+  - my tasks # user can see its own tasks
+  - single task # user can see details of (his or others) tasks and its comments
+  - add task # user can add task through this page
+  - my comments # user can see its own comments from this page
+  - profile # user can see his/hers profile details
