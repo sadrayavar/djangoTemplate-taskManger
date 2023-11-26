@@ -12,9 +12,9 @@ class Task(models.Model):
         ("Completed", "Completed"),
     ]
 
-    id = models.UUIDField(
-        default=uuid.uuid4, unique=True, primary_key=True, editable=False
-    )
+    # id = models.UUIDField(
+    #     default=uuid.uuid4, unique=True, primary_key=True, editable=False
+    # )
     title = models.CharField(max_length=50, unique=True)
     priority = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     state = models.CharField(max_length=11, choices=STATE_CHOICES)
@@ -25,5 +25,5 @@ class Task(models.Model):
     def deadline(self):
         return datetime.combine(self.deadline_date, self.deadline_time)
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
