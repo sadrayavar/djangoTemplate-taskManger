@@ -13,7 +13,9 @@
             <div>{{ task.deadline_date }}</div>
             <div>{{ task.deadline_time }}</div>
         </div>
-        <a href="{% url "editTask" task.id %}" class="btn btn-secondary">Edit</a>
-        <a href="{% url "deleteTask" task.id %}" class="btn btn-danger">Delete</a>
+        {% if user %}
+            <a href="{% url "editTask" task.id %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url "deleteTask" task.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
     </div>
 {% endblock content %}

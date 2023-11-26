@@ -43,8 +43,9 @@ def allTasks(request):
 
 @login_required(login_url="loginUser")
 def singleTask(request, taskId):
-    taskDetail = Task.objects.get(id=taskId)
-    return render(request, "singleTask.html", {"task": taskDetail})
+    task = Task.objects.get(id=taskId)
+    context = {"task": task, "user": request.user == task.user}
+    return render(request, "singleTask.html", context)
 
 
 @login_required(login_url="loginUser")
