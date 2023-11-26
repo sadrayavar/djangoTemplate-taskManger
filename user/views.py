@@ -3,13 +3,15 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def registerUser(request):
-    return HttpResponse("register user page")
-
-
-def editUser(request):
+def user(request):
     return HttpResponse("edit user page")
 
 
-def deleteUser(request):
-    return HttpResponse("delete user page")
+def registerUser(request):
+    return HttpResponse(
+        "register user page"
+    )  # TODO Zahra : create a template for register like i did for loginUser below
+
+
+def loginUser(request):
+    return render(request, "login.html")

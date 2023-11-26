@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+    {% block style %}
+      {% include "styles.html" %}
+    {% endblock style %}
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+  </head>
+  <a href="#content" style="height: 1px; width: 1px; position: absolute; overflow: hidden; top: -10px;">Skip to the main contetn</a>
+  <body>
+    {% block header %}
+      {% include "header.html" %}
+    {% endblock header %}
+    {% include "messages.html" %}
+    <div id="content" class="content m-3">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    {% block footer %}
+      {% include "footer.html" %}
+    {% endblock footer %}
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+  </body>
+</html>

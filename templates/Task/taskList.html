@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    List of Tasks
+{% endblock title %}
+{% block content %}
+    <div>
+        <a href="{% url "addTask" %}" class="btn btn-primary ">
+            <div>Add</div>
+        </a>
+    </div>
+    {% for task in tasks %}
+        <a href="{% url "singleTask" task.id %}">{{ task.title }}</a>
+        <br>
+    {% endfor %}
+{% endblock content %}
