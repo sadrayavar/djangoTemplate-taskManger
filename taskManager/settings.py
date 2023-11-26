@@ -48,6 +48,7 @@ TEMPLATES = [
         "DIRS": [
             BASE_DIR / "templates",
             BASE_DIR / "templates/Basic",
+            BASE_DIR / "templates/Basic/header",
             BASE_DIR / "templates/Task",
             BASE_DIR / "templates/User",
         ],
