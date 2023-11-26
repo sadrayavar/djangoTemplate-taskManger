@@ -1,5 +1,5 @@
 create pages: # TODO Zahra
-  - tasks # users can see all of the tasks that are made --> taskList.html
+  - tasks # users can see all of the tasks that are made --> allTasks.html
   - my tasks # user can see its own tasks --> _
   - single task # user can see details of (his or others) tasks and its comments --> singleTask.html
   - add task # user can add task through this page --> taskForm.html
@@ -7,5 +7,9 @@ create pages: # TODO Zahra
   - profile # user can see his/hers profile details --> _
 
 user authentication # (done) sadra
-comment section: TODO sadra
+connect user to task # (done) Sadra --> every user can see its own tasks
+comment section: TODO sadrag
 fix edit: TODO sadra
+
+<!-- users = models.ManyToManyField(User)
+tasks = models.ManyToManyField(Task) -->
