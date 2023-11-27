@@ -1,10 +1,12 @@
 create pages: # TODO Zahra
   - tasks # users can see all of the tasks that are made --> allTasks.html
+    - space = Done
   - my tasks # user can see its own tasks --> _
   - single task # user can see details of (his or others) tasks and its comments --> singleTask.html
   - add task # user can add task through this page --> taskForm.html
   - my comments # user can see its own comments from this page --> _
   - profile # user can see his/hers profile details --> _
+# TODO Zahra : create a template for register like i did for loginUser below
 
 user authentication # (done) sadra
 connect user to task # (done) Sadra --> every user can see its own tasks

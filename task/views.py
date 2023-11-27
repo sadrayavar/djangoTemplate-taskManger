@@ -42,7 +42,7 @@ def allTasks(request):
     tasks = Task.objects.all()
 
     context = {"tasks": tasks, "count": len(tasks)}
-    return render(request, "taskList.html", {"tasks": tasks})
+    return render(request, "taskList.html",context)
 
 
 @login_required(login_url="loginUser")
