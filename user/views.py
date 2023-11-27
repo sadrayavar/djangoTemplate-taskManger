@@ -10,6 +10,10 @@ def account(request):
 
 
 def registerUser(request):
+    if request.user.is_authenticated:
+        context = {"mess": "You are already registered."}
+        return render(request, "allTasks", context)
+
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
