@@ -8,8 +8,40 @@
             <div>Add</div>
         </a>
     </div>
-    {% for task in tasks %}
-        <a href="{% url "singleTask" task.id %}">{{ task.title }}</a>
-        <br>
-    {% endfor %}
+    <div class="showTasks mask-custom">
+        {% if count > 0 %}
+        <div class="text-center pt-3 pb-2">
+            <h1>Task List</h1>
+            <div class="container">
+                    <div class="d-flex justify-content-start">
+                        <div class="col h3">Task</div>
+                        <div class="col h3">Team Member</div>
+                        <div class="col h3">Priority</div>
+                        <div class="col h3">Deadline</div>
+                    </div>                
+                    {% for task in tasks %}
+                    <div class="row text-center border border-warning d-flex justify-content-start pt-3 pb-3 mt-2">
+                            <div class="col">
+                                <a class="text-light" href="{% url "singleTask" task.id %}">{{ task.title }}</a>
+                            </div>
+                            <div class="col">
+                                Zahra Rostami
+                            </div>
+                            <div class="col">
+                                1
+                            </div>
+                            <div class="col">
+                                2024/12/12
+                            </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center pt-3 pb-2">
+                <h1>Task List Is Empty</h1>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 {% endblock content %}
