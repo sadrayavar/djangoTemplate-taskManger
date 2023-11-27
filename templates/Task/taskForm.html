@@ -3,9 +3,6 @@
   Tasks
 {% endblock title %}
 {% block content %}
-  <a href="." class="btn btn-primary ">
-    <div>Back</div>
-  </a>
   <form method="post" action="">
     {% csrf_token %}
     <div class="form-group">{{ form.title.label_tag }} {{ form.title }}</div>

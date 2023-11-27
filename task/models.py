@@ -22,4 +22,4 @@ class Task(models.Model):
     def deadline(self):
         return datetime.combine(self.deadline_date, self.deadline_time)
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

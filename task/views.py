@@ -17,10 +17,9 @@ from .models import Task
 def addTask(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
-        print(form.errors)
         if form.is_valid():
             task = form.save(commit=False)
-            task.user = request.user
+            task.user = request.user  # Assign the current logged-in user to the user attribute
             task.save()
             return redirect("allTasks")
     else:
