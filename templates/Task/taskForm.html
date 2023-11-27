@@ -3,6 +3,11 @@
   Tasks
 {% endblock title %}
 {% block content %}
+  {% if form.errors %}
+    <div class="error">
+      <strong>Error:</strong> {{ form.errors.title }}
+    </div>
+  {% endif %}
   <form method="post" action="">
     {% csrf_token %}
     <div class="form-group">{{ form.title.label_tag }} {{ form.title }}</div>

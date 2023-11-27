@@ -19,7 +19,7 @@ def addTask(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
-            task.user = request.user  # Assign the current logged-in user to the user attribute
+            task.user = request.user
             task.save()
             return redirect("allTasks")
     else:
