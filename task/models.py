@@ -12,7 +12,7 @@ class Task(models.Model):
         ("Completed", "Completed"),
     ]
 
-    title = models.CharField(max_length=50, unique=True)
+    title = models.CharField(max_length=15, unique=True)
     priority = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     state = models.CharField(max_length=11, choices=STATE_CHOICES)
     deadline_date = models.DateField(default=date.today)
