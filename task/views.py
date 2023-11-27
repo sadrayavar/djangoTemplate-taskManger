@@ -1,16 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.http import HttpResponseForbidden
 from .forms import TaskForm
 from .models import Task
 
-# navList = [
-#     {"label": "Discover", "url": "taskList"},
-#     {"label": "Home", "url": "userTasks"},
-#     {"label": "Profile", "url": "account"},
-# ]
+tabs = [
+    {"text": "Add", "link": "addTask", "class": "link-primary"},
+    {"text": "Home", "link": "allTasks", "class": ""},
+    {"text": "Exlplore", "link": "userTasks", "class": ""},
+]
 
 
 @login_required
@@ -25,14 +24,15 @@ def addTask(request):
     else:
         form = TaskForm()
 
-    return render(request, "taskForm.html", {"form": form})
+    context = {"form": form, "tabs": tabs, "title": "Add Task"}
+    return render(request, "taskForm.html", context)
 
 
 @login_required
 def userTasks(request):
     tasks = Task.objects.filter(user=request.user)
 
-    context = {"tasks": tasks, "count": len(tasks)}
+    context = {"tasks": tasks, "count": len(tasks), "tabs": tabs, "title": "My Tasks"}
     return render(request, "taskList.html", context)
 
 
@@ -40,15 +40,25 @@ def userTasks(request):
 def allTasks(request):
     tasks = Task.objects.all()
 
-    context = {"tasks": tasks, "count": len(tasks)}
-    return render(request, "taskList.html",context)
+    context = {
+        "tasks": tasks,
+        "count": len(tasks),
+        "tabs": tabs,
+        "title": "People Tasks",
+    }
+    return render(request, "taskList.html", context)
 
 
 @login_required
 def singleTask(request, taskId):
     task = Task.objects.get(id=taskId)
 
-    context = {"task": task, "owner": request.user == task.user}
+    context = {
+        "task": task,
+        "owner": request.user == task.user,
+        "tabs": tabs,
+        "title": f"Task {task.title}",
+    }
     return render(request, "singleTask.html", context)
 
 
@@ -58,11 +68,6 @@ def deleteTask(request, taskId):
 
     if task.user == request.user:
         task.delete()
-        messages.success(
-            request,
-            f"To do with id of {taskId} is deleted succesfully.",
-            extra_tags="success",
-        )
         return redirect("allTasks")
 
     else:
@@ -84,4 +89,9 @@ def editTask(request, taskId):
             return HttpResponseForbidden()
     else:
         form = TaskForm(instance=task)
-        return render(request, "taskForm.html", {"form": form})
+        context = {
+            "tabs": tabs,
+            "form": form,
+            "title": f"Edit {task.title}",
+        }
+        return render(request, "taskForm.html", context)

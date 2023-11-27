@@ -1,17 +1,21 @@
-create pages: # TODO Zahra
-  - tasks # users can see all of the tasks that are made --> allTasks.html
-    - space = Done
-  - my tasks # user can see its own tasks --> _
-  - single task # user can see details of (his or others) tasks and its comments --> singleTask.html
-  - add task # user can add task through this page --> taskForm.html
-  - my comments # user can see its own comments from this page --> _
-  - profile # user can see his/hers profile details --> _
-# TODO Zahra : create a template for register like i did for loginUser below
+# TODO Zahra tasks 
+users can see all of the tasks that are made --> allTasks.html
+# TODO Zahra my tasks 
+user can see its own tasks --> _
+# TODO Zahra single task 
+user can see details of (his or others) tasks and its comments --> singleTask.html
+# TODO Zahra add task 
+user can add task through this page --> taskForm.html
+# TODO Zahra my comments 
+user can see its own comments from this page --> _
+# TODO Zahra profile 
+user can see his/hers profile details --> _
+# TODO Zahra messages
+add message window that disappairs after few seconds
+# TODO Zahra body margin
 
-user authentication # (done) sadra
-connect user to task # (done) Sadra --> every user can see its own tasks
-comment section: TODO sadrag
-fix edit: TODO sadra
-
-<!-- users = models.ManyToManyField(User)
-tasks = models.ManyToManyField(Task) -->
+# TODO sadra comments
+# TODO sadra style forms with bootstrap
+# TODO sadra default date and time
+# TODO sadra register message
+send message for registers who are loged in and trying to reach register page

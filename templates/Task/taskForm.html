@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-  Tasks
+  {{ title }}
 {% endblock title %}
+{% block header %}
+  {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
 {% block content %}
   {% if form.errors %}
     <div class="error">

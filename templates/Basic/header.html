@@ -1,25 +1,16 @@
 <div class="container">
   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <ul class="nav col-12 col-md-auto mb-2 mr-4 justify-content-center mb-md-0">
+      {% for tab in tabs %}
+        <li>
+          <a href="{% url tab.link %}" class="nav-link px-2 {{ tab.class }}">{{ tab.text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
     <div>
       <a class="navbar-brand me-auto" href="{% url 'allTasks' %}">HERISI Task Manager</a>
+      {% if not title == "" %}<div class="d-inline">:&nbsp; {{ title }}</div>{% endif %}
     </div>
-    <ul class="nav col-12 col-md-auto mb-2 mr-4 justify-content-center mb-md-0">
-      <li>
-        <a href="#" class="nav-link px-2 link-secondary">Home</a>
-      </li>
-      <li>
-        <a href="#" class="nav-link px-2">Features</a>
-      </li>
-      <li>
-        <a href="#" class="nav-link px-2">Pricing</a>
-      </li>
-      <li>
-        <a href="#" class="nav-link px-2">FAQs</a>
-      </li>
-      <li>
-        <a href="#" class="nav-link px-2">About</a>
-      </li>
-    </ul>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
       <input type="search"
              class="form-control form-control-dark text-bg-light"

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
+    {{ title }}
 {% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
 {% block content %}
     <div class="card">
         <div class="card-body">
