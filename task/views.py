@@ -17,7 +17,6 @@ from .models import Task
 def addTask(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
-        print(form.errors)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
