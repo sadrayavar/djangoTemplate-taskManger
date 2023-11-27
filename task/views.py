@@ -13,7 +13,7 @@ from .models import Task
 # ]
 
 
-@login_required(login_url="loginUser")
+@login_required
 def addTask(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -28,7 +28,7 @@ def addTask(request):
     return render(request, "taskForm.html", {"form": form})
 
 
-@login_required(login_url="loginUser")
+@login_required
 def userTasks(request):
     tasks = Task.objects.filter(user=request.user)
 
@@ -36,7 +36,7 @@ def userTasks(request):
     return render(request, "taskList.html", context)
 
 
-@login_required(login_url="loginUser")
+@login_required
 def allTasks(request):
     tasks = Task.objects.all()
 
@@ -44,7 +44,7 @@ def allTasks(request):
     return render(request, "taskList.html",context)
 
 
-@login_required(login_url="loginUser")
+@login_required
 def singleTask(request, taskId):
     task = Task.objects.get(id=taskId)
 
@@ -52,7 +52,7 @@ def singleTask(request, taskId):
     return render(request, "singleTask.html", context)
 
 
-@login_required(login_url="loginUser")
+@login_required
 def deleteTask(request, taskId):
     task = Task.objects.get(id=taskId)  # .delete()
 
@@ -69,7 +69,7 @@ def deleteTask(request, taskId):
         return HttpResponseForbidden()
 
 
-@login_required(login_url="loginUser")
+@login_required
 def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
     if request.method == "POST":
