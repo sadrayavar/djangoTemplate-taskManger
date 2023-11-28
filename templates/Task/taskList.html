@@ -9,21 +9,19 @@
     {% if count > 0 %}
         <div class="text-center pt-3 pb-2">
             <div class="container">
-                <div class="d-flex justify-content-start pb-3 border-warning border-bottom">
+                <div class="pb-3 row border-warning border-bottom">
                     <div class="col h3">Task</div>
                     <div class="col h3">Owner</div>
                     <div class="col h3">Priority</div>
                     <div class="col h3">Deadline</div>
                 </div>
                 {% for task in tasks %}
-                    <a class="text-white text-decoration-none bg-dark"
+                    <a class="text-white text-decoration-none row text-center rounded py-3 mt-2"
                        href="{% url "singleTask" task.id %}">
-                        <div class="row text-center rounded d-flex justify-content-start pt-3 pb-3 mt-2">
-                            <div class="col">{{ task.title | capfirst }}</div>
-                            <div class="col">{{ task.user | capfirst }}</div>
-                            <div class="col">{{ task.priority }}</div>
-                            <div class="col">{{ task.deadline_date }}</div>
-                        </div>
+                        <div class="col">{{ task.title | capfirst }}</div>
+                        <div class="col">{{ task.user | capfirst }}</div>
+                        <div class="col">{{ task.priority }}</div>
+                        <div class="col">{{ task.deadline_date }}</div>
                     </a>
                     <br>
                 {% endfor %}
