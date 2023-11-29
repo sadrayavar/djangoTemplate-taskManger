@@ -4,12 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from .forms import TaskForm
 from .models import Task
-
-tabs = [
-    {"text": "Add", "link": "addTaskPage", "class": "link-primary"},
-    {"text": "Home", "link": "explorePage", "class": ""},
-    {"text": "Exlplore", "link": "homePage", "class": ""},
-]
+from taskManager.constant import tabs, logo, taskTitles
 
 
 @login_required
@@ -24,7 +19,10 @@ def addTask(request):
     else:
         form = TaskForm()
 
-    context = {"form": form, "tabs": tabs, "title": "Add Task"}
+    header = {"tabs": tabs, "logo": logo, "title": taskTitles["add"]}
+    context = {"form": form}
+    context.update(header)
+
     return render(request, "taskForm.html", context)
 
 
@@ -32,7 +30,10 @@ def addTask(request):
 def home(request):
     tasks = Task.objects.filter(user=request.user)
 
-    context = {"tasks": tasks, "count": len(tasks), "tabs": tabs, "title": "My Tasks"}
+    header = {"tabs": tabs, "logo": logo, "title": taskTitles["home"]}
+    context = {"tasks": tasks, "count": len(tasks)}
+    context.update(header)
+
     return render(request, "taskList.html", context)
 
 
@@ -40,12 +41,10 @@ def home(request):
 def explore(request):
     tasks = Task.objects.all()
 
-    context = {
-        "tasks": tasks,
-        "count": len(tasks),
-        "tabs": tabs,
-        "title": "People Tasks",
-    }
+    header = {"tabs": tabs, "logo": logo, "title": taskTitles["explore"]}
+    context = {"tasks": tasks, "count": len(tasks)}
+    context.update(header)
+
     return render(request, "taskList.html", context)
 
 
@@ -53,12 +52,10 @@ def explore(request):
 def task(request, taskId):
     task = Task.objects.get(id=taskId)
 
-    context = {
-        "task": task,
-        "owner": request.user == task.user,
-        "tabs": tabs,
-        "title": f"Task {task.title}",
-    }
+    header = {"tabs": tabs, "logo": logo, "title": f"{taskTitles['task']} {task.title}"}
+    context = {"task": task, "owner": request.user == task.user}
+    context.update(header)
+
     return render(request, "singleTask.html", context)
 
 
@@ -88,10 +85,12 @@ def editTask(request, taskId):
         else:
             return HttpResponseForbidden()
     else:
-        form = TaskForm(instance=task)
-        context = {
+        header = {
             "tabs": tabs,
-            "form": form,
-            "title": f"Edit {task.title}",
+            "logo": logo,
+            "title": f"{taskTitles['edit']} {task.title}",
         }
+        context = {"form": TaskForm(instance=task)}
+        context.update(header)
+
         return render(request, "taskForm.html", context)
