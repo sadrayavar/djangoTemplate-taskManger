@@ -15,8 +15,8 @@
             <div>{{ task.deadline_time }}</div>
         </div>
         {% if owner %}
-            <a href="{% url "editTask" task.id %}" class="btn btn-secondary">Edit</a>
-            <a href="{% url "deleteTask" task.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url "editTaskPage" task.id %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url "deleteTaskPage" task.id %}" class="btn btn-danger">Delete</a>
         {% endif %}
     </div>
 {% endblock content %}

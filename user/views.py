@@ -12,14 +12,14 @@ def account(request):
 def registerUser(request):
     if request.user.is_authenticated:
         context = {"mess": "You are already registered."}
-        return render(request, "allTasks", context)
+        return render(request, "explorePage", context)
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("allTasks")
+            return redirect("explorePage")
     else:
         form = UserCreationForm()
     return render(request, "register.html", {"form": form})

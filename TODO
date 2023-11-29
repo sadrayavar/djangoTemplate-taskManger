@@ -1,5 +1,5 @@
 # TODO Zahra tasks 
-users can see all of the tasks that are made --> allTasks.html
+users can see all of the tasks that are made --> taskList.html
 # TODO Zahra my tasks 
 user can see its own tasks --> _
 # TODO Zahra single task 
@@ -17,5 +17,16 @@ add message window that disappairs after few seconds
 # TODO sadra comments
 # TODO sadra style forms with bootstrap
 # TODO sadra default date and time
-# TODO sadra register message
-send message for registers who are loged in and trying to reach register page
+messages: # TODO sadra messages
+ - user register
+ - user deleted
+ - user edited
+ - user doesnt exist
+ - task add
+ - task deleted
+ - task edited
+ - task doesnt exist
+ - commesnts add
+ - commesnts deleted
+ - commesnts edited
+ - commesnts doesnt exist

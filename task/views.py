@@ -6,9 +6,9 @@ from .forms import TaskForm
 from .models import Task
 
 tabs = [
-    {"text": "Add", "link": "addTask", "class": "link-primary"},
-    {"text": "Home", "link": "allTasks", "class": ""},
-    {"text": "Exlplore", "link": "userTasks", "class": ""},
+    {"text": "Add", "link": "addTaskPage", "class": "link-primary"},
+    {"text": "Home", "link": "explorePage", "class": ""},
+    {"text": "Exlplore", "link": "homePage", "class": ""},
 ]
 
 
@@ -20,7 +20,7 @@ def addTask(request):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
-            return redirect("allTasks")
+            return redirect("explorePage")
     else:
         form = TaskForm()
 
@@ -29,7 +29,7 @@ def addTask(request):
 
 
 @login_required
-def userTasks(request):
+def home(request):
     tasks = Task.objects.filter(user=request.user)
 
     context = {"tasks": tasks, "count": len(tasks), "tabs": tabs, "title": "My Tasks"}
@@ -37,7 +37,7 @@ def userTasks(request):
 
 
 @login_required
-def allTasks(request):
+def explore(request):
     tasks = Task.objects.all()
 
     context = {
@@ -50,7 +50,7 @@ def allTasks(request):
 
 
 @login_required
-def singleTask(request, taskId):
+def task(request, taskId):
     task = Task.objects.get(id=taskId)
 
     context = {
@@ -68,7 +68,7 @@ def deleteTask(request, taskId):
 
     if task.user == request.user:
         task.delete()
-        return redirect("allTasks")
+        return redirect("explorePage")
 
     else:
         return HttpResponseForbidden()

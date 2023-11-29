@@ -14,7 +14,7 @@ urlpatterns = [
     ),
     path(
         "logout/",
-        authView.LogoutView.as_view(next_page="allTasks"),
+        authView.LogoutView.as_view(next_page="explorePage"),
         name="logoutUser",
     ),
     path("register/", views.registerUser, name="registerUser"),
