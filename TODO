@@ -1,8 +1,3 @@
-pages:
-
-- user can see its own comments from it
-- user can see his/hers profile details
-
 add message window that disappairs after few seconds
 body margin
 style forms with bootstrap

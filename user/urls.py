@@ -4,7 +4,7 @@ from django.contrib.auth import views as authView
 from taskManager.constant import tabs, profileTitles, logo
 
 urlpatterns = [
-    path("profile/", views.account, name="profilePage"),
+    path("profile/", views.editUser, name="profilePage"),
     path(
         "login/",
         authView.LoginView.as_view(
@@ -15,9 +15,8 @@ urlpatterns = [
         name="loginUser",
     ),
     path(
-        "logout/",
-        authView.LogoutView.as_view(next_page="homePage"),
-        name="logoutUser",
+        "logout/", authView.LogoutView.as_view(next_page="homePage"), name="logoutUser"
     ),
-    path("register/", views.registerUser, name="registerUser"),
+    path("register/", views.registerUser, name="registerUserPage"),
+    path("delete/", views.deleteUser, name="deleteUserPage"),
 ]

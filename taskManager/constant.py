@@ -28,6 +28,10 @@ commentTitles = {
     "my": "My Comment",
 }
 
+userTitles = {
+    "profile": "Profile",
+}
+
 reservedWords = [
     "add",
     "delete",

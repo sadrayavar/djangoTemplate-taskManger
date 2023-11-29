@@ -20,6 +20,6 @@
         {% endif %}
     </div>
     <br>
-    <a href="{% url "addCommentPage" task.id %}" class="btn btn-secondary">Add</a>
+    <a href="{% url "addCommentPage" task.id %}" class="btn btn-secondary">Add comment</a>
     {% include "commentList.html" with comments=comments user=user %}
 {% endblock content %}
