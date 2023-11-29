@@ -3,12 +3,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from task.models import Task
+from django.contrib.auth.decorators import login_required
 from .models import Comment
 from .forms import CommentForm
 from taskManager.constant import tabs, logo, commentTitles
 
 
 # Create your views here.
+@login_required
 def addComment(request, taskId):
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -26,6 +28,7 @@ def addComment(request, taskId):
         return render(request, "commentForm.html", {**data, **header})
 
 
+@login_required
 def deleteComment(request, taskId, commentId):
     comment = Comment.objects.get(id=commentId)
     if comment.user == request.user:
@@ -35,6 +38,7 @@ def deleteComment(request, taskId, commentId):
         return HttpResponseForbidden()
 
 
+@login_required
 def editComment(request, taskId, commentId):
     comment = Comment.objects.get(id=commentId)
     if request.method == "POST":

@@ -1,19 +1,24 @@
-user can see its own comments from this page --> _
-user can see his/hers profile details --> _
+pages:
+
+- user can see its own comments from it
+- user can see his/hers profile details
+
 add message window that disappairs after few seconds
-body margin 
+body margin
 style forms with bootstrap
 default date and time
-messages:
- - user register
- - user deleted
- - user edited
- - user doesnt exist
- - task add
- - task deleted
- - task edited
- - task doesnt exist
- - commesnts add
- - commesnts deleted
- - commesnts edited
- - commesnts doesnt exist
+
+messages
+
+- user register
+- user deleted
+- user edited
+- user doesnt exist
+- task add
+- task deleted
+- task edited
+- task doesnt exist
+- commesnts add
+- commesnts deleted
+- commesnts edited
+- commesnts doesnt exist
