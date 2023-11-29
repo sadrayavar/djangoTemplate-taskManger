@@ -58,3 +58,13 @@ def editComment(request, taskId, commentId):
         data = {"form": CommentForm(instance=comment), "edit": True}
 
         return render(request, "commentForm.html", {**data, **header})
+
+
+@login_required
+def myComments(request):
+    comments = Comment.objects.filter(user=request.user)
+
+    header = {"tabs": tabs, "logo": logo, "title": commentTitles["my"]}
+    data = {"comments": comments, "user": request.user}
+
+    return render(request, "myComments.html", {**header, **data})

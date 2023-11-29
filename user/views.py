@@ -14,14 +14,14 @@ def account(request):
 
 def registerUser(request):
     if request.user.is_authenticated:
-        return redirect("explorePage")
+        return redirect("homePage")
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("explorePage")
+            return redirect("homePage")
     else:
         form = UserCreationForm()
         header = {"tabs": tabs, "title": profileTitles["register"], "logo": logo}

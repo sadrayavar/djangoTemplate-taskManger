@@ -2,8 +2,8 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path("", views.explore, name="explorePage"),
-    path("myTasks/", views.home, name="homePage"),
+    path("", views.explore, name="homePage"),
+    path("myTasks/", views.home, name="myTasksPage"),
     #
     path("<int:taskId>/", include("comment.urls")),
     #

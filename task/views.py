@@ -18,7 +18,7 @@ def addTask(request):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
-            return redirect("explorePage")
+            return redirect("homePage")
     else:
         form = TaskForm()
 
@@ -69,7 +69,7 @@ def deleteTask(request, taskId):
     task = Task.objects.get(id=taskId)
     if task.user == request.user:
         task.delete()
-        return redirect("explorePage")
+        return redirect("homePage")
 
     else:
         return HttpResponseForbidden()

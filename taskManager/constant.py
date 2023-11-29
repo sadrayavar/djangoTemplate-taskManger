@@ -1,7 +1,8 @@
 tabs = [
-    {"text": "Add", "link": "addTaskPage", "class": ""},
+    {"text": "Add Task", "link": "addTaskPage", "class": ""},
     {"text": "Home", "link": "homePage", "class": ""},
-    {"text": "Exlplore", "link": "explorePage", "class": ""},
+    {"text": "My Tasks", "link": "myTasksPage", "class": ""},
+    {"text": "My Comments", "link": "myCommentsPage", "class": ""},
     {"text": "Profile", "link": "profilePage", "class": ""},
 ]
 
@@ -24,6 +25,7 @@ profileTitles = {
 commentTitles = {
     "add": "Add Comment",
     "edit": "Edit Comment",
+    "my": "My Comment",
 }
 
 reservedWords = [
