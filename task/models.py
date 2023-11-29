@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime, date, time
 from django.core.validators import MinValueValidator
 from user.models import User
+from taskManager.validator import validateReserved, validateNumber
 
 
 # Create your models here.
@@ -12,7 +13,9 @@ class Task(models.Model):
         ("Completed", "Completed"),
     ]
 
-    title = models.CharField(max_length=15, unique=True)
+    title = models.CharField(
+        max_length=15, unique=True, validators=[validateNumber, validateReserved]
+    )
     priority = models.IntegerField(validators=[MinValueValidator(0)], default=0)
     state = models.CharField(max_length=11, choices=STATE_CHOICES, default="New")
     deadline_date = models.DateField(default=date.today)

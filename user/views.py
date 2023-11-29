@@ -2,17 +2,19 @@ from django.contrib.auth import login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from taskManager.constant import tabs, profileTitles, logo
 
 
 # Create your views here.
 def account(request):
-    return render(request, "account.html")
+    header = {"tabs": tabs, "title": profileTitles["profile"], "logo": logo}
+
+    return render(request, "account.html", {**header})
 
 
 def registerUser(request):
     if request.user.is_authenticated:
-        context = {"mess": "You are already registered."}
-        return render(request, "explorePage", context)
+        return redirect("explorePage")
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -22,4 +24,5 @@ def registerUser(request):
             return redirect("explorePage")
     else:
         form = UserCreationForm()
-    return render(request, "register.html", {"form": form})
+        header = {"tabs": tabs, "title": profileTitles["register"], "logo": logo}
+        return render(request, "register.html", {"form": form, **header})

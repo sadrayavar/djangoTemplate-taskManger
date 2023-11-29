@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as authView
+from taskManager.constant import tabs, profileTitles, logo
 
 urlpatterns = [
     path("profile/", views.account, name="profilePage"),
@@ -8,6 +9,7 @@ urlpatterns = [
         "login/",
         authView.LoginView.as_view(
             template_name="login.html",
+            extra_context={"tabs": tabs, "title": profileTitles["login"], "logo": logo},
             redirect_authenticated_user=True,
         ),
         name="loginUser",

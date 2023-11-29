@@ -14,3 +14,27 @@ taskTitles = {
     "task": "Task",
     "edit": "Edit",
 }
+
+profileTitles = {
+    "profile": "User Account",
+    "register": "Register Taskmanager",
+    "login": "Login Taskmanager",
+}
+
+commentTitles = {
+    "add": "Add Comment",
+    "edit": "Edit Comment",
+}
+
+reservedWords = [
+    "add",
+    "delete",
+    "edit",
+    "myTasks",
+    "register",
+    "logout",
+    "login",
+    "profile",
+    "admin",
+    "account",
+]

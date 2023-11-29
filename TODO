@@ -1,23 +1,10 @@
-# TODO Zahra tasks 
-users can see all of the tasks that are made --> taskList.html
-# TODO Zahra my tasks 
-user can see its own tasks --> _
-# TODO Zahra single task 
-user can see details of (his or others) tasks and its comments --> singleTask.html
-# TODO Zahra add task 
-user can add task through this page --> taskForm.html
-# TODO Zahra my comments 
 user can see its own comments from this page --> _
-# TODO Zahra profile 
 user can see his/hers profile details --> _
-# TODO Zahra messages
 add message window that disappairs after few seconds
-# TODO Zahra body margin
-
-# TODO sadra comments
-# TODO sadra style forms with bootstrap
-# TODO sadra default date and time
-messages: # TODO sadra messages
+body margin 
+style forms with bootstrap
+default date and time
+messages:
  - user register
  - user deleted
  - user edited

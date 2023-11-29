@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-    User Account
+    {{ title }}
 {% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
 {% block content %}
-    User account
+    User Account
 {% endblock content %}

@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-    Register Taskmanager
+    {{ title }}
 {% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
