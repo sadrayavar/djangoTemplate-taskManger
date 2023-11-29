@@ -6,7 +6,6 @@ from taskManager.constant import tabs, profileTitles, logo
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from .models import User
-from taskManager.constant import userTitles
 
 
 # Create your views here.
@@ -17,7 +16,7 @@ def account(request):
 
 @login_required
 def editUser(request):
-    user = User.objects.filter(id=request.user.id)
+    user = User.objects.get(id=request.user.id)
     if request.method == "POST":
         form = UserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -29,7 +28,7 @@ def editUser(request):
         header = {
             "tabs": tabs,
             "logo": logo,
-            "title": f"{userTitles['profile']} {user}",
+            "title": f"{profileTitles['profile']} {user.username}",
         }
         data = {"form": UserChangeForm(instance=request.user)}
 
