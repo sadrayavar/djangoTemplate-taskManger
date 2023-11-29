@@ -14,9 +14,12 @@
             <div>{{ task.deadline_date }}</div>
             <div>{{ task.deadline_time }}</div>
         </div>
-        {% if owner %}
+        {% if user == task.user %}
             <a href="{% url "editTaskPage" task.id %}" class="btn btn-secondary">Edit</a>
             <a href="{% url "deleteTaskPage" task.id %}" class="btn btn-danger">Delete</a>
         {% endif %}
     </div>
+    <br>
+    <a href="{% url "addCommentPage" task.id %}" class="btn btn-secondary">Add</a>
+    {% include "commentList.html" with comments=comments user=user %}
 {% endblock content %}

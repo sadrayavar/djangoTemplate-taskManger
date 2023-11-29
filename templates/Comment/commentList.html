@@ -1,0 +1,11 @@
+{% for comment in comments %}
+    <div>
+        <p>{{ comment.text }}</p>
+        {% if user == comment.user %}
+            <a href="{% url "editCommentPage" task.id comment.id %}"
+               class="btn btn-secondary">Edit</a>
+            <a href="{% url "deleteCommentPage" task.id comment.id %}"
+               class="btn btn-danger">Delete</a>
+        {% endif %}
+    </div>
+{% endfor %}

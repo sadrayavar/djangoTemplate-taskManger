@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
+{% block content %}
+    <form method="post">
+        {{ form }}
+        {% csrf_token %}
+        {% if edit %}
+            <button class="btn btn-secondary">Edit comment</button>
+        {% else %}
+            <button class="btn btn-secondary">Add comment</button>
+        {% endif %}
+    </form>
+{% endblock content %}

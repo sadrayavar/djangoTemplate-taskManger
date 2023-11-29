@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user",
     "task",
+    "comment",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ TEMPLATES = [
             BASE_DIR / "templates/Basic",
             BASE_DIR / "templates/Task",
             BASE_DIR / "templates/User",
+            BASE_DIR / "templates/Comment",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
