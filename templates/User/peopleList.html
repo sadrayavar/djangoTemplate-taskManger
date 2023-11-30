@@ -1,0 +1,15 @@
+{% if peopleCount > 0 %}
+    <h1 class="h1">People</h1>
+    {% for person in people %}
+        {{ person.username }}
+        <br>
+        {{ person.first_name }}
+        <br>
+        {{ person.last_name }}
+        <br>
+        {{ person.email }}
+        <br>
+    {% endfor %}
+{% else %}
+    <h1 class="h1">No results for People</h1>
+{% endif %}

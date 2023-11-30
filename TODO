@@ -1,17 +1,21 @@
-style forms with bootstrap
+- style forms with bootstrap:
+  -- register
+
 default date and time
 
-add message window that disappairs after few seconds for:
+- for future:
+  -- add follower / following
 
-- user register
-- user deleted
-- user edited
-- user doesnt exist
-- task add
-- task deleted
-- task edited
-- task doesnt exist
-- commesnts add
-- commesnts deleted
-- commesnts edited
-- commesnts doesnt exist
+- add message window that disappairs after few seconds for:
+  -- user register
+  -- user deleted
+  -- user edited
+  -- user doesnt exist
+  -- task add
+  -- task deleted
+  -- task edited
+  -- task doesnt exist
+  -- commesnts add
+  -- commesnts deleted
+  -- commesnts edited
+  -- commesnts doesnt exist

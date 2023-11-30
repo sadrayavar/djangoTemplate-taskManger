@@ -1,5 +1,5 @@
 tabs = [
-    {"text": "Add Task", "link": "addTaskPage", "class": ""},
+    {"text": "Add Task", "link": "addTaskPage", "class": "active text-white"},
     {"text": "Home", "link": "homePage", "class": ""},
     {"text": "My Tasks", "link": "myTasksPage", "class": ""},
     {"text": "My Comments", "link": "myCommentsPage", "class": ""},
@@ -10,23 +10,25 @@ logo = "HERISI Task Manager"
 
 taskTitles = {
     "add": "Add Task",
-    "home": "My Task",
-    "explore": "People Tasks",
+    "myTasks": "My Task",
+    "home": "Home",
     "task": "Task",
     "edit": "Edit",
 }
 
 profileTitles = {
     "profile": "User Account",
-    "register": "Register Taskmanager",
-    "login": "Login Taskmanager",
+    "register": "Register",
+    "login": "Login",
 }
 
 commentTitles = {
     "add": "Add Comment",
     "edit": "Edit Comment",
-    "my": "My Comment",
+    "my": "My Comments",
 }
+
+searchTitles = {"search": "Search results for"}
 
 reservedWords = [
     "add",

@@ -29,23 +29,23 @@ def addTask(request):
 
 
 @login_required
-def home(request):
+def myTasks(request):
     tasks = Task.objects.filter(user=request.user)
 
-    header = {"tabs": tabs, "logo": logo, "title": taskTitles["home"]}
-    data = {"tasks": tasks, "count": len(tasks)}
+    header = {"tabs": tabs, "logo": logo, "title": taskTitles["myTasks"]}
+    data = {"tasks": tasks, "tasksCount": len(tasks)}
 
-    return render(request, "taskList.html", {**data, **header})
+    return render(request, "home.html", {**data, **header})
 
 
 @login_required
-def explore(request):
+def home(request):
     tasks = Task.objects.all()
 
-    header = {"tabs": tabs, "logo": logo, "title": taskTitles["explore"]}
-    data = {"tasks": tasks, "count": len(tasks)}
+    header = {"tabs": tabs, "logo": logo, "title": taskTitles["home"]}
+    data = {"tasks": tasks, "tasksCount": len(tasks)}
 
-    return render(request, "taskList.html", {**data, **header})
+    return render(request, "home.html", {**data, **header})
 
 
 @login_required
@@ -58,7 +58,12 @@ def task(request, taskId):
         "logo": logo,
         "title": f"{taskTitles['task']} {task.title}",
     }
-    data = {"task": task, "comments": comments, "user": request.user}
+    data = {
+        "task": task,
+        "comments": comments,
+        "commentsCount": len(comments),
+        "user": request.user,
+    }
     commentForm = {"form": CommentForm()}
 
     return render(request, "singleTask.html", {**header, **data, **commentForm})

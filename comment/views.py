@@ -22,10 +22,11 @@ def addComment(request, taskId):
 
             return redirect("..")
     else:
-        header = {"tabs": tabs, "logo": logo, "title": commentTitles["add"]}
-        data = {"form": CommentForm(), "edit": False}
+        form = CommentForm()
 
-        return render(request, "commentForm.html", {**data, **header})
+    header = {"tabs": tabs, "logo": logo, "title": commentTitles["add"]}
+    data = {"form": form, "edit": False}
+    return render(request, "commentForm.html", {**data, **header})
 
 
 @login_required
@@ -65,6 +66,6 @@ def myComments(request):
     comments = Comment.objects.filter(user=request.user)
 
     header = {"tabs": tabs, "logo": logo, "title": commentTitles["my"]}
-    data = {"comments": comments, "user": request.user}
+    data = {"comments": comments, "commentsCount": len(comments), "user": request.user}
 
     return render(request, "myComments.html", {**header, **data})

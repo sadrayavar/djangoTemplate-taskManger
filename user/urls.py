@@ -5,18 +5,12 @@ from taskManager.constant import tabs, profileTitles, logo
 
 urlpatterns = [
     path("profile/", views.editUser, name="profilePage"),
+    path("login/", views.loginUser, name="loginUser"),
     path(
-        "login/",
-        authView.LoginView.as_view(
-            template_name="login.html",
-            extra_context={"tabs": tabs, "title": profileTitles["login"], "logo": logo},
-            redirect_authenticated_user=True,
-        ),
-        name="loginUser",
-    ),
-    path(
-        "logout/", authView.LogoutView.as_view(next_page="homePage"), name="logoutUser"
+        "logout/",
+        authView.LogoutView.as_view(next_page="homePage"),
+        name="logoutUserPage",
     ),
     path("register/", views.registerUser, name="registerUserPage"),
-    path("delete/", views.deleteUser, name="deleteUserPage"),
+    path("delete/", views.deleteUser, name="deleteUserPage"),  # type: ignore
 ]

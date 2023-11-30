@@ -1,37 +1,35 @@
-{% extends "base.html" %}
-{% block title %}
-    {{ title }}
-{% endblock title %}
-{% block header %}
-    {% include "header.html" with tabs=tabs title=title %}
-{% endblock header %}
-{% block content %}
-    {% if count > 0 %}
-        <div class="text-center pt-3 pb-2">
-            <div class="container">
-                <div class="pb-3 row border-warning border-bottom">
-                    <div class="col h3">Task</div>
-                    <div class="col h3">Owner</div>
-                    <div class="col h3">Priority</div>
-                    <div class="col h3">Deadline</div>
-                </div>
-                {% for task in tasks %}
-                    <a class="text-white text-decoration-none bg-dark"
-                       href="{% url "taskPage" task.id %}">
-                        <div class="row text-center rounded d-flex justify-content-start pt-3 pb-3 mt-2">
-                            <div class="col">{{ task.title | capfirst }}</div>
-                            <div class="col">{{ task.user | capfirst }}</div>
-                            <div class="col">{{ task.priority }}</div>
-                            <div class="col">{{ task.deadline_date }}</div>
-                        </div>
-                    </a>
-                    <br>
-                {% endfor %}
+{% if tasksCount > 0 %}
+    <h1 class="h1">Tasks</h1>
+    <div class="text-center pt-3 pb-2">
+        <div class="container">
+            <div class="pb-3 row border-warning border-bottom">
+                <div class="col h3">Task</div>
+                <div class="col h3">Owner</div>
+                <div class="col h3">Priority</div>
+                <div class="col h3">Deadline</div>
+                {% if search %}
+                    <div class="col h3">Deadline Time</div>
+                    <div class="col h3">State</div>
+                {% endif %}
             </div>
+            {% for task in tasks %}
+                <a class="text-white text-decoration-none bg-dark"
+                   href="{% url "taskPage" task.id %}">
+                    <div class="row text-center rounded d-flex justify-content-start pt-3 pb-3 mt-2">
+                        <div class="col">{{ task.title | capfirst }}</div>
+                        <div class="col">{{ task.user | capfirst }}</div>
+                        <div class="col">{{ task.priority }}</div>
+                        <div class="col">{{ task.deadline_date }}</div>
+                        {% if search %}
+                            <div class="col">{{ task.deadline_time }}</div>
+                            <div class="col">{{ task.state }}</div>
+                        {% endif %}
+                    </div>
+                </a>
+                <br>
+            {% endfor %}
         </div>
-    {% else %}
-        <div class="text-center pt-3 pb-2">
-            <h1>Task List Is Empty</h1>
-        </div>
-    {% endif %}
-{% endblock content %}
+    </div>
+{% else %}
+    <h1 class="h1">No results for Tasks</h1>
+{% endif %}

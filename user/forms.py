@@ -23,3 +23,31 @@ class UserRegistratoinForm(forms.ModelForm):
             ),
             "password": forms.PasswordInput(),
         }
+
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "type": "text",
+                "autofocus": True,
+                "autocomplete": "username",
+                "class": "form-control text-bg-dark",
+                "id": "floatingInput",
+                "placeholder": "Username",
+            }
+        ),
+        label="Username",
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "type": "password",
+                "autocomplete": "current-password",
+                "class": "form-control text-bg-dark",
+                "id": "floatingPassword",
+                "placeholder": "Password",
+            }
+        ),
+        label="Password",
+    )

@@ -1,11 +1,16 @@
-{% for comment in comments %}
-    <div>
-        <p>{{ comment.text }}</p>
-        {% if user == comment.user %}
-            <a href="{% url "editCommentPage" comment.task.id comment.id %}"
-               class="btn btn-secondary">Edit</a>
-            <a href="{% url "deleteCommentPage" comment.task.id comment.id %}"
-               class="btn btn-danger">Delete</a>
-        {% endif %}
-    </div>
-{% endfor %}
+{% if commentsCount > 0 %}
+    <h1 class="h1">Comments</h1>
+    {% for comment in comments %}
+        <div>
+            <p>{{ comment.text }}</p>
+            {% if user == comment.user %}
+                <a href="{% url "editCommentPage" comment.task.id comment.id %}"
+                   class="btn btn-secondary">Edit</a>
+                <a href="{% url "deleteCommentPage" comment.task.id comment.id %}"
+                   class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <h1 class="h1">No results for Comments</h1>
+{% endif %}

@@ -17,13 +17,14 @@
     {% block header %}
     {% endblock header %}
     {% include "messages.html" %}
-    <div id="content">
+    <div id="content" class="dd-flex align-items-center py-4 bg-body-dark">
       {% block content %}
       {% endblock content %}
     </div>
     {% block footer %}
       {% include "footer.html" %}
     {% endblock footer %}
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
   </body>
 </html>

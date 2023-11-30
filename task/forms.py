@@ -15,3 +15,6 @@ class TaskForm(forms.ModelForm):
             "deadline_date",
             "deadline_time",
         )
+        widgets = {
+            "title": forms.TextInput(attrs={"autofocus": True}),
+        }
