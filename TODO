@@ -1,9 +1,7 @@
-add message window that disappairs after few seconds
-body margin
 style forms with bootstrap
 default date and time
 
-messages
+add message window that disappairs after few seconds for:
 
 - user register
 - user deleted

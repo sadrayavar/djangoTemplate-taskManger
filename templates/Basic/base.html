@@ -13,11 +13,11 @@
       {% endblock title %}
     </title>
   </head>
-  <body>
+  <body class="text-light bg-dark">
     {% block header %}
     {% endblock header %}
     {% include "messages.html" %}
-    <div id="content" class="content m-3">
+    <div id="content">
       {% block content %}
       {% endblock content %}
     </div>
