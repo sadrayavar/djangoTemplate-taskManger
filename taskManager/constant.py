@@ -1,10 +1,22 @@
 tabs = [
-    {"text": "Add Task", "link": "addTaskPage", "class": ""},
-    {"text": "Home", "link": "homePage", "class": "active"},
+    {"text": "Add Task +", "link": "addTaskPage", "class": ""},
+    {"text": "Home", "link": "homePage", "class": ""},
     {"text": "My Tasks", "link": "myTasksPage", "class": ""},
     {"text": "My Comments", "link": "myCommentsPage", "class": ""},
     {"text": "Profile", "link": "profilePage", "class": ""},
 ]
+
+
+def dynamicTabs(pageName):
+    dynTabs = tabs.copy()
+    for dic in dynTabs:
+        if dic["link"] == pageName:
+            dic["class"] = "text-dark active"
+        else:
+            dic["class"] = "text-white"
+
+    return dynTabs
+
 
 logo = "HERISI Task Manager"
 

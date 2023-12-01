@@ -6,7 +6,7 @@ from task.models import Task
 from django.contrib.auth.decorators import login_required
 from .models import Comment
 from .forms import CommentForm
-from taskManager.constant import tabs, logo, commentTitles
+from taskManager.constant import logo, commentTitles, dynamicTabs
 
 
 # Create your views here.
@@ -24,7 +24,7 @@ def addComment(request, taskId):
     else:
         form = CommentForm()
 
-    header = {"tabs": tabs, "logo": logo, "title": commentTitles["add"]}
+    header = {"tabs": dynamicTabs(""), "logo": logo, "title": commentTitles["add"]}
     data = {"form": form, "edit": False}
     return render(request, "commentForm.html", {**data, **header})
 
@@ -52,7 +52,7 @@ def editComment(request, taskId, commentId):
             return HttpResponseForbidden()
     else:
         header = {
-            "tabs": tabs,
+            "tabs": dynamicTabs(""),
             "logo": logo,
             "title": f"{commentTitles['edit']} {comment.text[0:10]}...",
         }
@@ -65,7 +65,11 @@ def editComment(request, taskId, commentId):
 def myComments(request):
     comments = Comment.objects.filter(user=request.user)
 
-    header = {"tabs": tabs, "logo": logo, "title": commentTitles["my"]}
+    header = {
+        "tabs": dynamicTabs("myCommentsPage"),
+        "logo": logo,
+        "title": commentTitles["my"],
+    }
     data = {"comments": comments, "commentsCount": len(comments), "user": request.user}
 
     return render(request, "myComments.html", {**header, **data})

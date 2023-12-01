@@ -2,10 +2,8 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse d-lg-flex">
       <div class="navbar-brand col-lg-3 me-0 border-bottom">
-        <a class="fs-4"
-           href="{% url "homePage" %}"
-           style="text-decoration:none;
-                  color:white">{{ logo }}</a>
+        <a class="fs-4 text-white text-decoration-none"
+           href="{% url "homePage" %}">{{ logo }}</a>
         {% comment %} {% if not title == "" %}
           :
           <div class="d-inline fs-6">{{ title }}</div>
@@ -14,7 +12,7 @@
       <ul class="nav nav-tabs navbar-nav col-lg-6 justify-content-lg-center mt-1">
         {% for tab in tabs %}
           <li class="nav-item">
-            <a class="nav-link px-3 text-white {{ tab.class }}"
+            <a class="nav-link px-3 {{ tab.class }}"
                aria-current="page"
                href="{% url tab.link %}"
                aria-disabled="true">{{ tab.text }}</a>

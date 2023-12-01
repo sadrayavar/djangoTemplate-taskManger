@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
+{% block content %}
+    {% if edit %}
+        <a class="btn btn-primary" href="{% url 'logoutUserPage' %}">Logout</a>
+    {% endif %}
+    <main class="form-signin w-100 m-auto">
+        {% if edit %}
+            <h1 class="h3 mb-3 fw-normal text-center">Edit your profile</h1>
+        {% else %}
+            <h1 class="h3 mb-3 fw-normal text-center">Registeration</h1>
+        {% endif %}
+        <form method="post" action="">
+            {% csrf_token %}
+            {% include "userDetails.html" with form=form %}
+            {% if edit %}
+                <button class="btn btn-primary w-100 py-2" type="submit">Submit changes</button>
+                <br>
+            {% else %}
+                <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+                <br>
+                <div class="text-center mt-3">
+                    <a class="link-light" href="{% url 'loginUser' %}">Already have an account?</a>
+                </div>
+            {% endif %}
+        </form>
+    </main>
+{% endblock content %}

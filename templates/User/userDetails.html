@@ -1,0 +1,26 @@
+<div class="form-floating top-form">
+    {{ form.username }}
+    <label for="floatingInput">{{ form.username.label }}</label>
+</div>
+<div class="form-floating middle-form">
+    {{ form.first_name }}
+    <label for="floatingInput">{{ form.first_name.label }}</label>
+</div>
+<div class="form-floating middle-form">
+    {{ form.last_name }}
+    <label for="floatingInput">{{ form.last_name.label }}</label>
+</div>
+<div class="form-floating middle-form">
+    {{ form.email }}
+    <label for="floatingInput">{{ form.email.label }}</label>
+</div>
+<div class="form-floating middle-form">
+    {{ form.password1 }}
+    <label for="floatingInput">{{ form.password1.label }}</label>
+</div>
+<div class="form-floating bottom-form">
+    {{ form.password2 }}
+    <label for="floatingInput">{{ form.password2.label }}</label>
+</div>
+{% for field in form %}<div>{{ field.errors }}</div>{% endfor %}
+<br>

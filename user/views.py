@@ -2,40 +2,33 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from taskManager.constant import tabs, profileTitles, logo
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, User
-from .forms import UserRegistratoinForm, UserLoginForm
-from taskManager.constant import tabs, profileTitles, logo
+from django.http import HttpResponseForbidden
+from django.contrib.auth.forms import UserChangeForm
+from .models import User
+from .forms import UserRegistratoinForm, UserLoginForm, UserEditoinForm
+from taskManager.constant import profileTitles, logo, dynamicTabs
 
 
 # Create your views here.
-def account(request):
-    header = {"tabs": tabs, "title": profileTitles["profile"], "logo": logo}
-    return render(request, "account.html", {**header})
-
-
 @login_required
 def editUser(request):
     user = User.objects.get(id=request.user.id)
     if request.method == "POST":
-        form = UserChangeForm(request.POST, instance=request.user)
+        form = UserEditoinForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect("profilePage")
-        else:
-            return HttpResponseForbidden()
     else:
-        form = UserChangeForm(instance=request.user)
+        form = UserEditoinForm(instance=request.user)
 
     header = {
-        "tabs": tabs,
+        "tabs": dynamicTabs("profilePage"),
         "logo": logo,
         "title": f"{profileTitles['profile']} {user.username}",
     }
-    data = {"form": form}
+    data = {"form": form, "edit": True}
 
-    return render(request, "register.html", {**data, **header})
+    return render(request, "userForm.html", {**data, **header})
 
 
 @login_required  # type: ignore
@@ -58,8 +51,12 @@ def registerUser(request):
     else:
         form = UserRegistratoinForm()
 
-    header = {"tabs": tabs, "title": profileTitles["register"], "logo": logo}
-    return render(request, "register.html", {"form": form, **header})
+    header = {
+        "tabs": dynamicTabs("profilePage"),
+        "title": profileTitles["register"],
+        "logo": logo,
+    }
+    return render(request, "userForm.html", {"form": form, **header})
 
 
 def loginUser(request):
@@ -78,5 +75,9 @@ def loginUser(request):
     else:
         form = UserLoginForm()
 
-    context = {"tabs": tabs, "title": profileTitles["login"], "logo": logo}
+    context = {
+        "tabs": dynamicTabs("profilePage"),
+        "title": profileTitles["login"],
+        "logo": logo,
+    }
     return render(request, "login.html", {"form": form, **context})

@@ -1,7 +1,5 @@
-- style forms with bootstrap:
-  -- register
-
-default date and time
+- move comment form to single task page
+- default date and time
 
 - for future:
   -- add follower / following
@@ -19,3 +17,5 @@ default date and time
   -- commesnts deleted
   -- commesnts edited
   -- commesnts doesnt exist
+
+- remove login required for anonymous users
