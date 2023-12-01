@@ -20,6 +20,7 @@ class Task(models.Model):
     state = models.CharField(max_length=11, choices=STATE_CHOICES, default="New")
     deadline_date = models.DateField(default=date.today)
     deadline_time = models.TimeField(default=time(0, 0, 0))
+    image = models.ImageField(null=True, blank=True,upload_to="taskPics")
 
     @property
     def deadline(self):

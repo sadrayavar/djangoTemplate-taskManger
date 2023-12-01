@@ -6,18 +6,35 @@
   {% include "header.html" with tabs=tabs title=title %}
 {% endblock header %}
 {% block content %}
-  {% if form.errors %}
-    <div class="error">
-      <strong>Error:</strong> {{ form.errors.title }}
-    </div>
-  {% endif %}
-  <form method="post" action="">
+  <h1 class="h1">Add Task</h1>
+  <form method="post" action="" class="m-auto form-group">
     {% csrf_token %}
-    <div class="form-group">{{ form.title.label_tag }} {{ form.title }}</div>
-    <div class="form-group">{{ form.priority.label_tag }} {{ form.priority }}</div>
-    <div class="form-group">{{ form.state.label_tag }} {{ form.state }}</div>
-    <div class="form-group">{{ form.deadline_date.label_tag }} {{ form.deadline_date }}</div>
-    <div class="form-group">{{ form.deadline_time.label_tag }} {{ form.deadline_time }}</div>
-    <button type="submit" class="btn btn-primary">Create task</button>
+    <div class="form-floating top-form">
+      {{ form.title }}
+      <label for="floatingInput">{{ form.title.label }}</label>
+    </div>
+    <div class="form-floating middle-form">
+      {{ form.priority }}
+      <label for="floatingInput">{{ form.priority.label }}</label>
+    </div>
+    <div class="form-floating middle-form">
+      {{ form.state }}
+      <label for="floatingInput">{{ form.state.label }}</label>
+    </div>
+    <div class="form-floating middle-form">
+      {{ form.deadline_date }}
+      <label for="floatingInput">{{ form.deadline_date.label }}</label>
+    </div>
+    <div class="form-floating middle-form">
+      {{ form.deadline_time }}
+      <label for="floatingInput">{{ form.deadline_time.label }}</label>
+    </div>
+    <div class="form-floating bottom-form">
+      {{ form.image }}
+      <label for="floatingInput">{{ form.image.label }}</label>
+    </div>
+    {% for field in form %}<div>{{ field.errors }}</div>{% endfor %}
+    <br>
+    <button type="submit" class="btn btn-primary w-100">Create task</button>
   </form>
 {% endblock content %}
