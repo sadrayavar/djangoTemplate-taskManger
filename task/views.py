@@ -77,7 +77,7 @@ def task(request, taskId):
     }
     commentForm = {"form": CommentForm()}
 
-    return render(request, "singleTask.html", {**header, **data, **commentForm})
+    return render(request, "taskPage.html", {**header, **data, **commentForm})
 
 
 @login_required
