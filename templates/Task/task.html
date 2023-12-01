@@ -2,16 +2,20 @@
     <span class="badge bg-info position-absolute top-0 start-0 p-2">{{ task.state }}</span>
     <span class="badge bg-danger position-absolute top-0 end-0 p-2">{{ task.priority }}</span>
     <a href="{% url 'taskPage' task.id %}">
-        <svg class="bd-placeholder-img card-img-top"
-             width="300"
-             height="150"
-             xmlns="http://www.w3.org/2000/svg"
-             role="img"
-             preserveAspectRatio="xMidYMid slice"
-             focusable="false">
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text class="h2" x="10%" y="75%" fill="#eceeef" dy=".5em">{{ task.title | capfirst }}</text>
-        </svg>
+        {% if task.image %}
+            <img src="{{ task.image.url }}" width="300" height="150" alt={{ task.image.name }}>
+        {% else %}
+            <svg class="bd-placeholder-img card-img-top"
+                 width="300"
+                 height="150"
+                 xmlns="http://www.w3.org/2000/svg"
+                 role="img"
+                 preserveAspectRatio="xMidYMid slice"
+                 focusable="false">
+                <rect width="100%" height="100%" fill="#55595c"></rect>
+                <text class="h2" x="10%" y="75%" fill="#eceeef" dy=".5em">{{ task.title | capfirst }}</text>
+            </svg>
+        {% endif %}
     </a>
     <div class="card-body bg-dark border rounded-bottom border-top-0 border-danger">
         <p class="card-text">
