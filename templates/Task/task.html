@@ -23,13 +23,13 @@
             <small class="text-body-info">{{ task.deadline_date }}</small>
             {% if user == task.user %}
                 <div class="btn-group">
-                    <button href="" class="btn btn-sm btn-danger">
-                        <a href="{% url "deleteTaskPage" task.id %}"
-                           class="text-decoration-none text-light">Delete</a>
-                    </button>
                     <button href="" class="btn btn-sm btn-primary">
                         <a href="{% url "editTaskPage" task.id %}"
                            class="text-decoration-none text-light">Edit</a>
+                    </button>
+                    <button href="" class="btn btn-sm btn-danger">
+                        <a href="{% url "deleteTaskPage" task.id %}"
+                           class="text-decoration-none text-light">Delete</a>
                     </button>
                 </div>
             {% endif %}

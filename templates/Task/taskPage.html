@@ -6,20 +6,8 @@
     {% include "header.html" with tabs=tabs title=title %}
 {% endblock header %}
 {% block content %}
-    <div class="card">
-        <div class="card-body">
-            <h1>{{ task.title }}</h1>
-            <div>{{ task.priority }}</div>
-            <div>{{ task.state }}</div>
-            <div>{{ task.deadline_date }}</div>
-            <div>{{ task.deadline_time }}</div>
-        </div>
-        {% if user == task.user %}
-            <a href="{% url "editTaskPage" task.id %}" class="btn btn-secondary">Edit</a>
-            <a href="{% url "deleteTaskPage" task.id %}" class="btn btn-danger">Delete</a>
-        {% endif %}
-    </div>
+    {% include "task.html" with task=task user=user %}
+    {% include "commentForm.html" with task=task form=form %}
     <br>
-    <a href="{% url "addCommentPage" task.id %}" class="btn btn-secondary">Add comment</a>
-    {% include "commentList.html" with comments=comments user=user %}
+    {% include "commentList.html" with comments=comments commentsCount=commentsCount %}
 {% endblock content %}

@@ -75,9 +75,9 @@ def task(request, taskId):
         "commentsCount": len(comments),
         "user": request.user,
     }
-    commentForm = {"form": CommentForm()}
+    form = {"form": CommentForm()}
 
-    return render(request, "taskPage.html", {**header, **data, **commentForm})
+    return render(request, "taskPage.html", {**header, **data, **form})
 
 
 @login_required

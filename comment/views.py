@@ -51,14 +51,21 @@ def editComment(request, taskId, commentId):
         else:
             return HttpResponseForbidden()
     else:
+        comments = Comment.objects.filter(task=taskId)
         header = {
             "tabs": dynamicTabs(""),
             "logo": logo,
             "title": f"{commentTitles['edit']} {comment.text[0:10]}...",
         }
-        data = {"form": CommentForm(instance=comment), "edit": True}
+        data = {
+            "form": CommentForm(instance=comment),
+            "edit": True,
+            "task": Task.objects.get(id=taskId),
+            "comments": comments,
+            "commentsCount": len(comments),
+        }
 
-        return render(request, "commentForm.html", {**data, **header})
+        return render(request, "taskPage.html", {**data, **header})
 
 
 @login_required
@@ -70,6 +77,6 @@ def myComments(request):
         "logo": logo,
         "title": commentTitles["my"],
     }
-    data = {"comments": comments, "commentsCount": len(comments), "user": request.user}
+    data = {"comments": comments, "commentsCount": len(comments), "my": True}
 
     return render(request, "myComments.html", {**header, **data})

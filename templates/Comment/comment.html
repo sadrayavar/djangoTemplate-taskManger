@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-between gap-5 align-items-start">
+    <div class="d-flex text-body-light">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded "
+             width="32"
+             height="32"
+             role="img"
+             focusable="false">
+            <rect width="100%" height="100%" fill="#007bff" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2b8ad9;"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2b8ad9;"></text>
+        </svg>
+        <p class="pb-3 mb-0 small lh-sm border-bottom text-break">
+            <strong class="d-block ">
+                {% if my %}
+                    You commented in <a href="{% url 'taskPage' comment.task.id %}">this</a> post
+                {% else %}
+                    @{{ comment.user }}
+                {% endif %}
+            </strong>{{ comment.text }}
+        </p>
+    </div>
+    <div class="d-flex flex-column">
+        {% if comment.user.id == user.id %}
+            <form action="{% url "editCommentPage" comment.task.id comment.id %}">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                    <a href="{% url "deleteCommentPage" comment.task.id comment.id %}"
+                       class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+<br>

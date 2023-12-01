@@ -6,5 +6,5 @@
     {% include "header.html" with tabs=tabs title=title %}
 {% endblock header %}
 {% block content %}
-    {% include "commentList.html" with comments=comments user=user %}
+    {% include "commentList.html" with comments=comments commentsCount=commentsCount edit=edit %}
 {% endblock content %}
