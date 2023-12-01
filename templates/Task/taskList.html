@@ -1,5 +1,5 @@
 {% if tasksCount > 0 %}
-    <div class="text-center pb-2 d-flex justify-content-center">
+    <div class="text-center pb-2 d-flex justify-content-between gap-5 w-100 flex-wrap">
         {% for task in tasks %}
             {% include "smallTask.html" with task=task %}
         {% endfor %}

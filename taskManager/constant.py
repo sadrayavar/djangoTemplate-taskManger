@@ -1,20 +1,26 @@
 tabs = [
-    {"text": "Add Task +", "link": "addTaskPage", "class": ""},
-    {"text": "Home", "link": "homePage", "class": ""},
-    {"text": "My Tasks", "link": "myTasksPage", "class": ""},
-    {"text": "My Comments", "link": "myCommentsPage", "class": ""},
-    {"text": "Profile", "link": "profilePage", "class": ""},
+    {"text": "Back", "staticLink": True, "link": "..", "class": "text-warning"},
+    {"text": "Add Task +", "staticLink": False, "link": "addTaskPage", "class": ""},
+    {"text": "Home", "staticLink": False, "link": "homePage", "class": ""},
+    {"text": "My Tasks", "staticLink": False, "link": "myTasksPage", "class": ""},
+    {"text": "My Comments", "staticLink": False, "link": "myCommentsPage", "class": ""},
+    {"text": "Profile", "staticLink": False, "link": "profilePage", "class": ""},
 ]
 
 
 def dynamicTabs(pageName):
     dynTabs = tabs.copy()
-    for dic in dynTabs:
+    for dic in dynTabs[1:]:
         if dic["link"] == pageName:
             dic["class"] = "text-dark active"
         else:
             dic["class"] = "text-white"
 
+    backNotList = [
+        "homePage",
+    ]
+    if pageName in backNotList:
+        return dynTabs[1:]
     return dynTabs
 
 
