@@ -49,14 +49,14 @@ def registerUser(request):
         return redirect("homePage")
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = UserRegistratoinForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect("homePage")
 
     else:
-        form = UserCreationForm()
+        form = UserRegistratoinForm()
 
     header = {"tabs": tabs, "title": profileTitles["register"], "logo": logo}
     return render(request, "register.html", {"form": form, **header})

@@ -7,18 +7,17 @@
 {% endblock header %}
 {% block content %}
   <main class="form-signin w-100 m-auto">
-    <h1 class="h3 mb-3 fw-normal">Please login</h1>
+    <h1 class="h3 mb-3 fw-normal text-center">Please login</h1>
     <form method="post" action="">
       {% csrf_token %}
-      <div class="form-floating">
+      <div class="form-floating top-form">
         {{ form.username }}
         <label for="floatingInput">{{ form.username.label }}</label>
       </div>
-      <div class="form-floating">
+      <div class="form-floating bottom-form">
         {{ form.password }}
         <label for="floatingInput">{{ form.password.label }}</label>
       </div>
-      {% comment %} {{ form }} {% endcomment %}
       <br>
       <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
       <br>

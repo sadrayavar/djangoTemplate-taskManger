@@ -1,27 +1,78 @@
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+mainAttr = {
+    "class": "form-control text-bg-dark",
+    "id": "floatingInput",
+}
 
 
-class UserRegistratoinForm(forms.ModelForm):
+class UserRegistratoinForm(UserCreationForm):
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "type": "password",
+                "autocomplete": "current-password",
+                "placeholder": "Password",
+                **mainAttr,
+            }
+        ),
+        label="Password",
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "type": "password",
+                "autocomplete": "current-password",
+                "placeholder": "Password",
+                **mainAttr,
+            }
+        ),
+        label="Password confirmation",
+    )
+
     class Meta:
-        model = CustomUser
+        model = User
         fields = (
             "username",
-            "password",
             "first_name",
             "last_name",
-            "last_name",
             "email",
-            "avatar",
         )
         widgets = {
             "username": forms.TextInput(
                 attrs={
-                    "class": "my-class",
+                    "type": "text",
                     "autofocus": True,
-                }
+                    "autocomplete": "username",
+                    "placeholder": "Username",
+                    **mainAttr,
+                },
             ),
-            "password": forms.PasswordInput(),
+            "first_name": forms.TextInput(
+                attrs={
+                    "type": "text",
+                    "maxLength": 150,
+                    "placeholder": "First name",
+                    **mainAttr,
+                },
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "type": "text",
+                    "maxLength": 150,
+                    "placeholder": "Last name",
+                    **mainAttr,
+                },
+            ),
+            "email": forms.TextInput(
+                attrs={
+                    "type": "email",
+                    "placeholder": "Email",
+                    **mainAttr,
+                },
+            ),
         }
 
 
@@ -32,9 +83,8 @@ class UserLoginForm(forms.Form):
                 "type": "text",
                 "autofocus": True,
                 "autocomplete": "username",
-                "class": "form-control text-bg-dark",
-                "id": "floatingInput",
                 "placeholder": "Username",
+                **mainAttr,
             }
         ),
         label="Username",
@@ -44,9 +94,8 @@ class UserLoginForm(forms.Form):
             attrs={
                 "type": "password",
                 "autocomplete": "current-password",
-                "class": "form-control text-bg-dark",
-                "id": "floatingPassword",
                 "placeholder": "Password",
+                **mainAttr,
             }
         ),
         label="Password",
