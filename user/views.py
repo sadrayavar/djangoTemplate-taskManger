@@ -73,9 +73,7 @@ def loginUser(request):
             password = form.cleaned_data["password"]
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                print("###########", user)
                 login(request, user)
-                # Redirect to success page or home page
                 return redirect("homePage")
     else:
         form = UserLoginForm()

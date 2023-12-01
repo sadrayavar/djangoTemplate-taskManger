@@ -24,7 +24,7 @@
       <ul class="navbar-nav col-lg-6 justify-content-lg-center">
         {% for tab in tabs %}
           <li class="nav-item">
-            <a class="nav-link px-3 {{ tab.class }}"
+            <a class="nav-link px-3 text-white {{ tab.class }}"
                aria-current="page"
                href="{% url tab.link %}"
                aria-disabled="true">{{ tab.text }}</a>
