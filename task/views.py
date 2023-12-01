@@ -12,7 +12,7 @@ from comment.models import Comment
 @login_required
 def addTask(request):
     if request.method == "POST":
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, request.FILES)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
@@ -96,7 +96,7 @@ def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
     if request.method == "POST":
         if task.user == request.user:
-            form = TaskForm(request.POST, instance=task)
+            form = TaskForm(request.POST, request.FILES, instance=task)
             if form.is_valid():
                 task.save()
                 return redirect(".")

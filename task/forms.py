@@ -40,5 +40,7 @@ class TaskForm(forms.ModelForm):
             ),
             "deadline_date": forms.DateInput(attrs={"type": "date", **mainAttr}),
             "deadline_time": forms.TextInput(attrs={"type": "time", **mainAttr}),
-            "image": forms.FileInput(attrs={"type": "file", **mainAttr}),
+            "image": forms.FileInput(
+                attrs={"type": "file", **mainAttr, "accept": "image/*"}
+            ),
         }
