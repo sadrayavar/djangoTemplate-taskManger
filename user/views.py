@@ -1,11 +1,11 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from taskManager.constant import tabs, profileTitles, logo
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.contrib.auth.forms import UserChangeForm
 from .models import User
-from .forms import UserRegistratoinForm, UserLoginForm, UserEditoinForm
+from .forms import UserRegistratoinForm, UserLoginForm, UserEditionForm
 from taskManager.constant import profileTitles, logo, dynamicTabs
 
 
@@ -14,12 +14,12 @@ from taskManager.constant import profileTitles, logo, dynamicTabs
 def editUser(request):
     user = User.objects.get(id=request.user.id)
     if request.method == "POST":
-        form = UserEditoinForm(request.POST, instance=request.user)
+        form = UserEditionForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect("profilePage")
     else:
-        form = UserEditoinForm(instance=request.user)
+        form = UserEditionForm(instance=request.user)
 
     header = {
         "tabs": dynamicTabs("profilePage"),
@@ -33,7 +33,9 @@ def editUser(request):
 
 @login_required
 def deleteUser(request):
-    User.objects.get(id=request.user.id).is_active = False
+    user = User.objects.get(id=request.user.id)
+    user.is_active = False
+
     return redirect("homePage")
 
 
@@ -81,3 +83,8 @@ def loginUser(request):
         "logo": logo,
     }
     return render(request, "login.html", {"form": form, **context})
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect("homePage")

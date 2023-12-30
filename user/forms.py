@@ -76,7 +76,7 @@ class UserRegistratoinForm(UserCreationForm):
         }
 
 
-class UserEditoinForm(UserChangeForm):
+class UserEditionForm(UserChangeForm):
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
