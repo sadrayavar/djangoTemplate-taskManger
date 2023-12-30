@@ -12,5 +12,5 @@ urlpatterns = [
         name="logoutUserPage",
     ),
     path("register/", views.registerUser, name="registerUserPage"),
-    path("delete/", views.deleteUser, name="deleteUserPage"),  # type: ignore
+    path("delete/", views.deleteUser, name="deleteUserPage"),
 ]

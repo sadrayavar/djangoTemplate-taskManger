@@ -31,10 +31,10 @@ def editUser(request):
     return render(request, "userForm.html", {**data, **header})
 
 
-@login_required  # type: ignore
+@login_required
 def deleteUser(request):
     User.objects.get(id=request.user.id).is_active = False
-    redirect("homePage")
+    return redirect("homePage")
 
 
 def registerUser(request):

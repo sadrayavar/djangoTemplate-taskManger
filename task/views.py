@@ -82,7 +82,11 @@ def task(request, taskId):
 @login_required
 def deleteTask(request, taskId):
     task = Task.objects.get(id=taskId)
-    if task.user == request.user and task.approved:
+
+    if not task.approved:
+        return HttpResponseForbidden()
+
+    if task.user == request.user:
         task.delete()
         return redirect("homePage")
 
@@ -93,8 +97,12 @@ def deleteTask(request, taskId):
 @login_required
 def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
+
+    if not task.approved:
+        return HttpResponseForbidden()
+
     if request.method == "POST":
-        if task.user == request.user and task.approved:
+        if task.user == request.user:
             form = TaskForm(request.POST, request.FILES, instance=task)
             if form.is_valid():
                 task.save()
