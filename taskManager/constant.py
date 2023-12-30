@@ -1,5 +1,5 @@
 tabs = [
-    {"text": "Back", "staticLink": True, "link": "..", "class": "text-warning"},
+    {"text": "Back", "staticLink": True, "link": "/", "class": "text-warning"},
     {"text": "Add Task +", "staticLink": False, "link": "addTaskPage", "class": ""},
     {"text": "Home", "staticLink": False, "link": "homePage", "class": ""},
     {"text": "My Tasks", "staticLink": False, "link": "myTasksPage", "class": ""},
