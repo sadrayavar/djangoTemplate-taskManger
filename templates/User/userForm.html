@@ -7,7 +7,8 @@
 {% endblock header %}
 {% block content %}
     {% if edit %}
-        <a class="btn btn-primary" href="{% url 'logoutUserPage' %}">Logout</a>
+        <a class="btn btn-warning" href="{% url 'logoutUserPage' %}">Logout</a>
+        <a class="btn btn-danger" href="{% url 'deleteUserPage' %}">Delete Account</a>
     {% endif %}
     <main class="form-group w-100 m-auto">
         {% if edit %}

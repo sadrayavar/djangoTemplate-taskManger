@@ -35,6 +35,7 @@ def editUser(request):
 def deleteUser(request):
     user = User.objects.get(id=request.user.id)
     user.is_active = False
+    user.save()
 
     return redirect("homePage")
 
