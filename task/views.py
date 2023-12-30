@@ -45,7 +45,6 @@ def myTasks(request):
     return render(request, "home.html", {**data, **header})
 
 
-@login_required
 def home(request):
     tasks = Task.objects.all()
 
@@ -83,7 +82,7 @@ def task(request, taskId):
 @login_required
 def deleteTask(request, taskId):
     task = Task.objects.get(id=taskId)
-    if task.user == request.user:
+    if task.user == request.user and task.approved:
         task.delete()
         return redirect("homePage")
 
@@ -95,7 +94,7 @@ def deleteTask(request, taskId):
 def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
     if request.method == "POST":
-        if task.user == request.user:
+        if task.user == request.user and task.approved:
             form = TaskForm(request.POST, request.FILES, instance=task)
             if form.is_valid():
                 task.save()
