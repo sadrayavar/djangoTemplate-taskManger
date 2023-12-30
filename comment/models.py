@@ -11,5 +11,5 @@ class Comment(models.Model):
     time = models.TimeField(auto_now_add=True)
     hidden = models.BooleanField(default=False)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)

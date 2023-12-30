@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from taskManager.constant import tabs, profileTitles, logo
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-from django.contrib.auth.forms import UserChangeForm
 from .models import User
 from .forms import UserRegistratoinForm, UserLoginForm, UserEditionForm
 from taskManager.constant import profileTitles, logo, dynamicTabs
@@ -22,7 +21,7 @@ def editUser(request):
         form = UserEditionForm(instance=request.user)
 
     header = {
-        "tabs": dynamicTabs("profilePage"),
+        "tabs": dynamicTabs("profilePage", request.user),
         "logo": logo,
         "title": f"{profileTitles['profile']} {user.username}",
     }
@@ -55,7 +54,7 @@ def registerUser(request):
         form = UserRegistratoinForm()
 
     header = {
-        "tabs": dynamicTabs("profilePage"),
+        "tabs": dynamicTabs("profilePage, request.user"),
         "title": profileTitles["register"],
         "logo": logo,
     }
@@ -79,7 +78,7 @@ def loginUser(request):
         form = UserLoginForm()
 
     context = {
-        "tabs": dynamicTabs("profilePage"),
+        "tabs": dynamicTabs("profilePage", request.user),
         "title": profileTitles["login"],
         "logo": logo,
     }

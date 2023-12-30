@@ -22,7 +22,7 @@ def addTask(request):
         form = TaskForm()
 
     header = {
-        "tabs": dynamicTabs("addTaskPage"),
+        "tabs": dynamicTabs("addTaskPage", request.user),
         "logo": logo,
         "title": taskTitles["add"],
     }
@@ -36,7 +36,7 @@ def myTasks(request):
     tasks = Task.objects.filter(user=request.user)
 
     header = {
-        "tabs": dynamicTabs("myTasksPage"),
+        "tabs": dynamicTabs("myTasksPage", request.user),
         "logo": logo,
         "title": taskTitles["myTasks"],
     }
@@ -49,7 +49,7 @@ def home(request):
     tasks = Task.objects.all()
 
     header = {
-        "tabs": dynamicTabs("homePage"),
+        "tabs": dynamicTabs("homePage", request.user),
         "logo": logo,
         "title": taskTitles["home"],
     }
@@ -58,13 +58,12 @@ def home(request):
     return render(request, "home.html", {**data, **header})
 
 
-@login_required
 def task(request, taskId):
     task = Task.objects.get(id=taskId)
     comments = Comment.objects.filter(task=taskId)
 
     header = {
-        "tabs": dynamicTabs("taskPage"),
+        "tabs": dynamicTabs("taskPage", request.user),
         "logo": logo,
         "title": f"{taskTitles['task']} {task.title}",
     }
@@ -111,7 +110,7 @@ def editTask(request, taskId):
             return HttpResponseForbidden()
     else:
         header = {
-            "tabs": dynamicTabs("editTaskPage"),
+            "tabs": dynamicTabs("editTaskPage", request.user),
             "logo": logo,
             "title": f"{taskTitles['edit']} {task.title}",
         }

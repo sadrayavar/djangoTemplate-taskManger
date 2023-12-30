@@ -1,5 +1,4 @@
 from django.http import HttpResponseForbidden
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from task.models import Task
@@ -10,13 +9,12 @@ from taskManager.constant import logo, commentTitles, dynamicTabs
 
 
 # Create your views here.
-@login_required
 def addComment(request, taskId):
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.user = request.user
+            comment.user = request.user if request.user.is_authenticated else None
             comment.task = Task.objects.get(id=taskId)
             comment.save()
 
@@ -24,7 +22,11 @@ def addComment(request, taskId):
     else:
         form = CommentForm()
 
-    header = {"tabs": dynamicTabs(""), "logo": logo, "title": commentTitles["add"]}
+    header = {
+        "tabs": dynamicTabs("", request.user),
+        "logo": logo,
+        "title": commentTitles["add"],
+    }
     data = {"form": form, "edit": False}
     return render(request, "commentForm.html", {**data, **header})
 
@@ -53,7 +55,7 @@ def editComment(request, taskId, commentId):
     else:
         comments = Comment.objects.filter(task=taskId)
         header = {
-            "tabs": dynamicTabs(""),
+            "tabs": dynamicTabs("", request.user),
             "logo": logo,
             "title": f"{commentTitles['edit']} {comment.text[0:10]}...",
         }
@@ -73,7 +75,7 @@ def myComments(request):
     comments = Comment.objects.filter(user=request.user)
 
     header = {
-        "tabs": dynamicTabs("myCommentsPage"),
+        "tabs": dynamicTabs("myCommentsPage", request.user),
         "logo": logo,
         "title": commentTitles["my"],
     }

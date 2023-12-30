@@ -8,8 +8,22 @@ tabs = [
 ]
 
 
-def dynamicTabs(pageName):
-    dynTabs = tabs.copy()
+def dynamicTabs(pageName, user):
+    dynTabs = None
+    if user.is_authenticated:
+        dynTabs = tabs.copy()
+    else:
+        dynTabs = [
+            {"text": "Back", "staticLink": True, "link": "/", "class": "text-warning"},
+            {"text": "Home", "staticLink": False, "link": "homePage", "class": ""},
+            {
+                "text": "Profile",
+                "staticLink": False,
+                "link": "profilePage",
+                "class": "",
+            },
+        ]
+
     for dic in dynTabs[1:]:
         if dic["link"] == pageName:
             dic["class"] = "text-dark active"
