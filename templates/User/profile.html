@@ -11,11 +11,13 @@
         <a class="btn btn-danger" href="{% url 'deleteUserPage' %}">Delete Account</a>
     {% endif %}
     <main class="form-group w-100 m-auto">
-        {% if edit %}
-            <h1 class="h3 mb-3 fw-normal text-center">Edit your profile</h1>
-        {% else %}
-            <h1 class="h3 mb-3 fw-normal text-center">Registeration</h1>
-        {% endif %}
+        <h1 class="h3 mb-3 fw-normal text-center">
+            {% if edit %}
+                Edit your profile
+            {% else %}
+                Registeration
+            {% endif %}
+        </h1>
         <form method="post" action="">
             {% csrf_token %}
             {% include "userDetails.html" with form=form %}
@@ -26,7 +28,7 @@
                 <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
                 <br>
                 <div class="text-center mt-3">
-                    <a class="link-light" href="{% url 'loginUser' %}">Already have an account?</a>
+                    <a class="link-light" href="{% url 'loginUser' %}">You are already on our team? Click here!</a>
                 </div>
             {% endif %}
         </form>

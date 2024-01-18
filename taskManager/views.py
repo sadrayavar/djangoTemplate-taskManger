@@ -1,11 +1,29 @@
 from django.shortcuts import render
 from taskManager.constant import tabs, logo
-from user.models import CustomUser, User
+from user.models import User
 from task.models import Task
 from comment.models import Comment
 from taskManager.constant import searchTitles
 from django.utils.safestring import mark_safe
+from django.http import HttpResponseForbidden
+from taskManager.constant import logo, taskTitles, dynamicTabs
 import re
+
+
+def adminPage(request):
+    if request.user.is_superuser:
+        header = {
+            "tabs": dynamicTabs("adminPage", request.user),
+            "logo": logo,
+            "title": taskTitles["admin"],
+        }
+        data = {
+            "edit": True,
+        }
+
+        return render(request, "adminPage.html", {**header, **data})
+    else:
+        return HttpResponseForbidden()
 
 
 def highlight(query, text):
@@ -30,14 +48,14 @@ def searchPeople(query):
 
         for field in [username, first_name, last_name, email]:
             if field[1]:
-                person = {
+                personData = {
                     "id": person.id,
                     "username": username[0],
                     "first_name": first_name[0],
                     "last_name": last_name[0],
                     "email": email[0],
                 }
-                result.append(person)
+                result.append(personData)
                 break
 
     return result

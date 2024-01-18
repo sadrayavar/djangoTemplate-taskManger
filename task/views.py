@@ -16,6 +16,7 @@ def addTask(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
+            task.approved = request.user.is_superuser
             task.save()
             return redirect("homePage")
     else:
@@ -97,23 +98,23 @@ def deleteTask(request, taskId):
 def editTask(request, taskId):
     task = Task.objects.get(id=taskId)
 
-    if not task.approved:
-        return HttpResponseForbidden()
-
-    if request.method == "POST":
-        if task.user == request.user:
-            form = TaskForm(request.POST, request.FILES, instance=task)
-            if form.is_valid():
-                task.save()
-                return redirect(".")
+    if task.approved:
+        if request.method == "POST":
+            if task.user == request.user:
+                form = TaskForm(request.POST, request.FILES, instance=task)
+                if form.is_valid():
+                    task.save()
+                    return redirect(".")
+            else:
+                return HttpResponseForbidden()
         else:
-            return HttpResponseForbidden()
-    else:
-        header = {
-            "tabs": dynamicTabs("editTaskPage", request.user),
-            "logo": logo,
-            "title": f"{taskTitles['edit']} {task.title}",
-        }
-        data = {"form": TaskForm(instance=task)}
+            header = {
+                "tabs": dynamicTabs("editTaskPage", request.user),
+                "logo": logo,
+                "title": f"{taskTitles['edit']} {task.title}",
+            }
+            data = {"form": TaskForm(instance=task)}
 
-        return render(request, "taskForm.html", {**data, **header})
+            return render(request, "taskForm.html", {**data, **header})
+    else:
+        return HttpResponseForbidden()

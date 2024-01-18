@@ -7,7 +7,7 @@
 {% endblock header %}
 {% block content %}
   <main class="form-group w-100 m-auto">
-    <h1 class="h3 mb-3 fw-normal text-center">Please login</h1>
+    <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
     <form method="post" action="">
       {% csrf_token %}
       <div class="form-floating top-form">
@@ -22,7 +22,7 @@
       <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
       <br>
       <div class="text-center mt-3">
-        <a class="link-light" href="{% url "registerUserPage" %}">You dont have an account?</a>
+        <a class="link-light" href="{% url "registerUserPage" %}">You are not on the team? Join us now!</a>
       </div>
     </form>
   </main>

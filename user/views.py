@@ -27,7 +27,7 @@ def editUser(request):
     }
     data = {"form": form, "edit": True}
 
-    return render(request, "userForm.html", {**data, **header})
+    return render(request, "profile.html", {**data, **header})
 
 
 @login_required
@@ -54,11 +54,11 @@ def registerUser(request):
         form = UserRegistratoinForm()
 
     header = {
-        "tabs": dynamicTabs("profilePage, request.user"),
+        "tabs": dynamicTabs("profilePage", request.user),
         "title": profileTitles["register"],
         "logo": logo,
     }
-    return render(request, "userForm.html", {"form": form, **header})
+    return render(request, "profile.html", {"form": form, **header})
 
 
 def loginUser(request):

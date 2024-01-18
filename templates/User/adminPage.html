@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
+{% block content %}
+    {% if edit %}
+        <a class="btn btn-warning" href="{% url 'logoutUserPage' %}">Logout</a>
+        <a class="btn btn-danger" href="{% url 'deleteUserPage' %}">Delete Account</a>
+        add comment approvement
+        <br>
+        add post approvement
+    {% endif %}
+{% endblock content %}

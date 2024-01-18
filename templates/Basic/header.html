@@ -9,12 +9,14 @@
     </div>
     <ul class="nav nav-tabs navbar-nav col-lg-6 justify-content-lg-center mt-1">
       {% for tab in tabs %}
-        <li class="nav-item">
-          <a class="nav-link px-3 {{ tab.class }}"
-             aria-current="page"
-             {% if tab.staticLink %} href="{{ tab.link }}" {% else %} href="{% url tab.link %}" {% endif %}
-             aria-disabled="true">{{ tab.text }}</a>
-        </li>
+        {% if tab.show %}
+          <li class="nav-item">
+            <a class="nav-link px-3 {{ tab.class }}"
+               aria-current="page"
+               {% if tab.staticLink %} href="{{ tab.link }}" {% else %} href="{% url tab.link %}" {% endif %}
+               aria-disabled="true">{{ tab.text }}</a>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <div class="d-lg-flex col-lg-3 justify-content-lg-end border-bottom pb-1 mt-1">{% include "search.html" %}</div>
