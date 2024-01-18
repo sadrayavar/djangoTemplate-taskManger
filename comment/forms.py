@@ -10,3 +10,4 @@ class CommentForm(forms.ModelForm):
         widgets = {
             "text": forms.TextInput(attrs={"autofocus": True}),
         }
+    text = forms.CharField(label='Your Comment')

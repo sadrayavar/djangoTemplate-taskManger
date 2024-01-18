@@ -1,6 +1,8 @@
-show image in the template from database
+- comment approvement section in admin console
+- add task counter using signal
+- comment approvement section in admin console ( maybe with signal )
 - style comment form
-- pagination 
+- pagination
 
 - for future:
   -- add follower / following
@@ -18,5 +20,3 @@ show image in the template from database
   -- commesnts deleted
   -- commesnts edited
   -- commesnts doesnt exist
-
-- remove login required for anonymous users
