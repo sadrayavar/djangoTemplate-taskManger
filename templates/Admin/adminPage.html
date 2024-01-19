@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block header %}
+    {% include "header.html" with tabs=tabs title=title %}
+{% endblock header %}
+{% block content %}
+    <div class="btn-group">
+        <button href="" class="btn btn-sm btn-warning">
+            <a class="text-decoration-none text-light"
+               href="{% url 'logoutUserPage' %}">Logout</a>
+        </button>
+        <button href="" class="btn btn-sm btn-danger">
+            <a class="text-decoration-none text-light"
+               href="{% url 'deleteUserPage' %}">Delete Account</a>
+        </button>
+    </div>
+    <hr />
+    <h1 class="h3 mb-3 fw-normal text-center">Comments Section</h1>
+    {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False adminConsole=True %}
+    <h1 class="h3 mb-3 fw-normal text-center">Posts Section</h1>
+    <br>
+{% endblock content %}

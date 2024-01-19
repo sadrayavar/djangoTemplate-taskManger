@@ -27,7 +27,7 @@ def addComment(request, taskId):
         "logo": logo,
         "title": commentTitles["add"],
     }
-    data = {"form": form, "edit": False}
+    data = {"form": form, "editComment": False}
     return render(request, "commentForm.html", {**data, **header})
 
 
@@ -36,7 +36,11 @@ def deleteComment(request, taskId, commentId):
     comment = Comment.objects.get(id=commentId)
     if comment.user == request.user:
         comment.delete()
-        return redirect(reverse("taskPage", args=[taskId]))
+        referer = request.META.get("HTTP_REFERER")[-9:-1]
+        if referer == "comments":
+            return redirect("myCommentsPage")
+        else:
+            return redirect(reverse("taskPage", args=[taskId]))
     else:
         return HttpResponseForbidden()
 
@@ -61,7 +65,7 @@ def editComment(request, taskId, commentId):
         }
         data = {
             "form": CommentForm(instance=comment),
-            "edit": True,
+            "editComment": True,
             "task": Task.objects.get(id=taskId),
             "comments": comments,
             "commentsCount": len(comments),
@@ -79,6 +83,6 @@ def myComments(request):
         "logo": logo,
         "title": commentTitles["my"],
     }
-    data = {"comments": comments, "commentsCount": len(comments), "my": True}
+    data = {"comments": comments, "commentsCount": len(comments)}
 
     return render(request, "myComments.html", {**header, **data})

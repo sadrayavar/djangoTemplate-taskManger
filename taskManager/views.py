@@ -6,25 +6,8 @@ from comment.models import Comment
 from taskManager.constant import searchTitles
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseForbidden
-from taskManager.constant import logo, taskTitles, dynamicTabs
+from taskManager.constant import logo
 import re
-
-
-def adminPage(request):
-    if request.user.is_superuser:
-        header = {
-            "tabs": dynamicTabs("adminPage", request.user),
-            "logo": logo,
-            "title": taskTitles["admin"],
-        }
-        data = {
-            "edit": True,
-        }
-
-        return render(request, "adminPage.html", {**header, **data})
-    else:
-        return HttpResponseForbidden()
-
 
 def highlight(query, text):
     pattern = re.compile(re.escape(query), re.IGNORECASE)

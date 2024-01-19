@@ -6,8 +6,8 @@
     {% include "header.html" with tabs=tabs title=title %}
 {% endblock header %}
 {% block content %}
-    {% include "task.html" with task=task user=user %}
+    {% include "task.html" with task=task %}
     {% include "commentForm.html" with task=task form=form %}
     <br>
-    {% include "commentList.html" with comments=comments commentsCount=commentsCount %}
+    {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False %}
 {% endblock content %}

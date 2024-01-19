@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "user",
     "task",
     "comment",
+    "adminapp",
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ TEMPLATES = [
             BASE_DIR / "templates/Task",
             BASE_DIR / "templates/User",
             BASE_DIR / "templates/Comment",
+            BASE_DIR / "templates/Admin",
         ],
         "APP_DIRS": True,
         "OPTIONS": {

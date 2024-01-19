@@ -9,27 +9,42 @@
         </svg>
         <p class="pb-3 mb-0 small lh-sm border-bottom text-break">
             <strong class="d-block ">
-                {% if my %}
-                    You commented in <a href="{% url 'taskPage' comment.task.id %}">this</a> post
+                {% if comment.user == None %}
+                    Anonymous user
                 {% else %}
-                    {% if comment.user == None %}
-                        Anonymous user
-                    {% else %}
-                        @{{ comment.user }}
-                    {% endif %}
+                    @{{ comment.user }}
+                {% endif %}
+                commented in <a href="{% url 'taskPage' comment.task.id %}">this</a> post
+                {% if myComments and comment.hidden %}
+                    &nbsp;&nbsp;&nbsp;
+                    <b>
+                      (This comment is made hidden by the admin)
+                    </b>
                 {% endif %}
             </strong>{{ comment.text }}
         </p>
     </div>
     <div class="d-flex flex-column">
-        {% if comment.user.id == user.id and not comment.user == None %}
-            <form action="{% url "editCommentPage" comment.task.id comment.id %}">
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
-                    <a href="{% url "deleteCommentPage" comment.task.id comment.id %}"
-                       class="btn btn-sm btn-danger">Delete</a>
+        {% if adminConsole %}
+            <form action="{% url "hideComment" comment.id %}">
+                <div class="d-flex">
+                    <p style="margin-top:5px;">Hidden:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <label class="switch">
+                        <input type="submit">
+                        <span class="switchSlider switchRound {% if comment.hidden %}hidden{% else %}nothidden{% endif %}"></span>
+                    </label>
                 </div>
             </form>
+        {% else %}
+            {% if comment.user.id == request.user.id and not comment.user == None %}
+                <form action="{% url "editCommentPage" comment.task.id comment.id %}">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-sm btn-secondary">Edit</button>
+                        <a href="{% url "deleteCommentPage" comment.task.id comment.id %}"
+                           class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </form>
+            {% endif %}
         {% endif %}
     </div>
 </div>

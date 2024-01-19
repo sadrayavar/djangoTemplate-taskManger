@@ -61,7 +61,7 @@ def home(request):
 
 def task(request, taskId):
     task = Task.objects.get(id=taskId)
-    comments = Comment.objects.filter(task=taskId)
+    comments = Comment.objects.filter(task=taskId, hidden=False)
 
     header = {
         "tabs": dynamicTabs("taskPage", request.user),

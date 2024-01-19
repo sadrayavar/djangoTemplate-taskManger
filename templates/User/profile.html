@@ -6,13 +6,21 @@
     {% include "header.html" with tabs=tabs title=title %}
 {% endblock header %}
 {% block content %}
-    {% if edit %}
-        <a class="btn btn-warning" href="{% url 'logoutUserPage' %}">Logout</a>
-        <a class="btn btn-danger" href="{% url 'deleteUserPage' %}">Delete Account</a>
+    {% if editUser %}
+        <div class="btn-group">
+            <button href="" class="btn btn-sm btn-warning">
+                <a class="text-decoration-none text-light"
+                   href="{% url 'logoutUserPage' %}">Logout</a>
+            </button>
+            <button href="" class="btn btn-sm btn-danger">
+                <a class="text-decoration-none text-light"
+                   href="{% url 'deleteUserPage' %}">Delete Account</a>
+            </button>
+        </div>
     {% endif %}
     <main class="form-group w-100 m-auto">
         <h1 class="h3 mb-3 fw-normal text-center">
-            {% if edit %}
+            {% if editUser %}
                 Edit your profile
             {% else %}
                 Registeration
@@ -21,7 +29,7 @@
         <form method="post" action="">
             {% csrf_token %}
             {% include "userDetails.html" with form=form %}
-            {% if edit %}
+            {% if editUser %}
                 <button class="btn btn-primary w-100 py-2" type="submit">Submit changes</button>
                 <br>
             {% else %}

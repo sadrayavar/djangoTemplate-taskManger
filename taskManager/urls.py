@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
-from comment.views import myComments
-from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from comment.views import myComments
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("admin_page/", views.adminPage, name="adminPage"),
+    path("admin_page/", include("adminapp.urls"), name="adminPage"),
     path("", include("task.urls")),
     path("account/", include("user.urls")),
     path("comments/", myComments, name="myCommentsPage"),

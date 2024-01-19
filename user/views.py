@@ -25,7 +25,7 @@ def editUser(request):
         "logo": logo,
         "title": f"{profileTitles['profile']} {user.username}",
     }
-    data = {"form": form, "edit": True}
+    data = {"form": form, "editUser": True}
 
     return render(request, "profile.html", {**data, **header})
 

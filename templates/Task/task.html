@@ -27,7 +27,7 @@
         </p>
         <div class="d-flex justify-content-between align-items-center">
             <small class="text-body-info">{{ task.deadline_date }}</small>
-            {% if user == task.user %}
+            {% if request.user == task.user %}
                 <div class="btn-group">
                     {% if task.approved %}
                         <button href="" class="btn btn-sm btn-primary">

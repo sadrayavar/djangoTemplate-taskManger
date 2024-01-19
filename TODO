@@ -1,6 +1,6 @@
-- comment approvement section in admin console
 - add task counter using signal
-- comment approvement section in admin console ( maybe with signal )
+- task approvement section in admin console ( maybe with signal )
+- fix back button
 - style comment form
 - pagination
 
