@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from taskManager.constant import tabs, profileTitles, logo
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from taskManager.constant import profileTitles, generateBasicData
 from .models import User
 from .forms import UserRegistratoinForm, UserLoginForm, UserEditionForm
-from taskManager.constant import profileTitles, logo, dynamicTabs
+from task.signals import getTaskCount
 
 
 # Create your views here.
@@ -20,14 +20,11 @@ def editUser(request):
     else:
         form = UserEditionForm(instance=request.user)
 
-    header = {
-        "tabs": dynamicTabs("profilePage", request.user),
-        "logo": logo,
-        "title": f"{profileTitles['profile']} {user.username}",
-    }
     data = {"form": form, "editUser": True}
-
-    return render(request, "profile.html", {**data, **header})
+    context = generateBasicData(
+        request, "profilePage", f"{profileTitles['profile']} {user.username}"
+    )
+    return render(request, "profile.html", {**context, **data})
 
 
 @login_required
@@ -53,12 +50,9 @@ def registerUser(request):
     else:
         form = UserRegistratoinForm()
 
-    header = {
-        "tabs": dynamicTabs("profilePage", request.user),
-        "title": profileTitles["register"],
-        "logo": logo,
-    }
-    return render(request, "profile.html", {"form": form, **header})
+    data = {"form": form}
+    context = generateBasicData(request, "profilePage", "register")
+    return render(request, "profile.html", {**context, **data})
 
 
 def loginUser(request):
@@ -77,12 +71,9 @@ def loginUser(request):
     else:
         form = UserLoginForm()
 
-    context = {
-        "tabs": dynamicTabs("profilePage", request.user),
-        "title": profileTitles["login"],
-        "logo": logo,
-    }
-    return render(request, "login.html", {"form": form, **context})
+    data = {"form": form}
+    context = generateBasicData(request, "profilePage", "login")
+    return render(request, "login.html", {**context, **data})
 
 
 def logoutUser(request):

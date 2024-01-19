@@ -5,7 +5,7 @@ from task.models import Task
 from django.contrib.auth.decorators import login_required
 from .models import Comment
 from .forms import CommentForm
-from taskManager.constant import logo, commentTitles, dynamicTabs
+from taskManager.constant import generateBasicData, commentTitles
 
 
 # Create your views here.
@@ -22,13 +22,9 @@ def addComment(request, taskId):
     else:
         form = CommentForm()
 
-    header = {
-        "tabs": dynamicTabs("", request.user),
-        "logo": logo,
-        "title": commentTitles["add"],
-    }
     data = {"form": form, "editComment": False}
-    return render(request, "commentForm.html", {**data, **header})
+    context = generateBasicData(request, "", "add")
+    return render(request, "commentForm.html", {**context, **data})
 
 
 @login_required
@@ -58,11 +54,7 @@ def editComment(request, taskId, commentId):
             return HttpResponseForbidden()
     else:
         comments = Comment.objects.filter(task=taskId)
-        header = {
-            "tabs": dynamicTabs("", request.user),
-            "logo": logo,
-            "title": f"{commentTitles['edit']} {comment.text[0:10]}...",
-        }
+
         data = {
             "form": CommentForm(instance=comment),
             "editComment": True,
@@ -70,19 +62,16 @@ def editComment(request, taskId, commentId):
             "comments": comments,
             "commentsCount": len(comments),
         }
-
-        return render(request, "taskPage.html", {**data, **header})
+        context = generateBasicData(
+            request, "", f"{commentTitles['edit']} {comment.text[0:10]}..."
+        )
+        return render(request, "taskPage.html", {**context, **data})
 
 
 @login_required
 def myComments(request):
     comments = Comment.objects.filter(user=request.user)
 
-    header = {
-        "tabs": dynamicTabs("myCommentsPage", request.user),
-        "logo": logo,
-        "title": commentTitles["my"],
-    }
     data = {"comments": comments, "commentsCount": len(comments)}
-
-    return render(request, "myComments.html", {**header, **data})
+    context = generateBasicData(request, "myCommentsPage", "my")
+    return render(request, "myComments.html", {**context, **data})

@@ -1,23 +1,22 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponseForbidden
-from taskManager.constant import logo, taskTitles, dynamicTabs
+from taskManager.constant import generateBasicData, logo, taskTitles, dynamicTabs
 from comment.models import Comment
 
 
 def adminHomePage(request):
     if request.user.is_superuser:
-        # fmt: off
-        header = {"tabs": dynamicTabs("adminPage", request.user),"logo": logo,"title": taskTitles["admin"]}
-        data = {"adminConsole":True}
+        comments = Comment.objects.all()
 
-        return render(request, "adminPage.html", {**header, **data, **fetchComments()})
+        data = {
+            "adminConsole": True,
+            "comments": comments,
+            "commentsCount": len(comments),
+        }
+        context = generateBasicData(request, "adminPage", "admin")
+        return render(request, "adminPage.html", {**context, **data})
     else:
         return HttpResponseForbidden()
-
-
-def fetchComments():
-    comments = Comment.objects.all()
-    return {"comments": comments, "commentsCount": len(comments)}
 
 
 def hideComment(request, commentId):

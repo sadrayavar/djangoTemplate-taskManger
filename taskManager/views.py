@@ -1,13 +1,11 @@
 from django.shortcuts import render
-from taskManager.constant import tabs, logo
+from django.utils.safestring import mark_safe
 from user.models import User
 from task.models import Task
 from comment.models import Comment
-from taskManager.constant import searchTitles
-from django.utils.safestring import mark_safe
-from django.http import HttpResponseForbidden
-from taskManager.constant import logo
+from taskManager.constant import generateBasicData, searchTitles
 import re
+
 
 def highlight(query, text):
     pattern = re.compile(re.escape(query), re.IGNORECASE)
@@ -103,19 +101,15 @@ def search(request):
     comments = searchComments(query)
 
     results = {"people": people, "tasks": tasks, "comments": comments}
-    count = {
+    data = {
         "peopleCount": len(people),
         "tasksCount": len(tasks),
         "commentsCount": len(comments),
+        "query": query,
     }
-    context = {"query": query}
-    header = {
-        "tabs": tabs,
-        "logo": logo,
-        "title": f"{searchTitles['search']} {query[0:10]}",
-    }
+    context = generateBasicData(request, "", f"{searchTitles['search']} {query[0:10]}")
     return render(
         request,
         "searchResult.html",
-        {**context, **header, **results, **count, "search": True},
+        {**context, **data, **results, "search": True},
     )

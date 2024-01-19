@@ -1,12 +1,12 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-from taskManager.constant import logo, taskTitles, dynamicTabs
+from taskManager.constant import taskTitles, generateBasicData
 from .forms import TaskForm
 from .models import Task
 from comment.forms import CommentForm
 from comment.models import Comment
+from .signals import getTaskCount
 
 
 @login_required
@@ -22,61 +22,42 @@ def addTask(request):
     else:
         form = TaskForm()
 
-    header = {
-        "tabs": dynamicTabs("addTaskPage", request.user),
-        "logo": logo,
-        "title": taskTitles["add"],
-    }
     data = {"form": form}
-
-    return render(request, "taskForm.html", {**data, **header})
+    context = generateBasicData(request, "addTaskPage", "add")
+    return render(request, "taskForm.html", {**context, **data})
 
 
 @login_required
 def myTasks(request):
     tasks = Task.objects.filter(user=request.user)
 
-    header = {
-        "tabs": dynamicTabs("myTasksPage", request.user),
-        "logo": logo,
-        "title": taskTitles["myTasks"],
-    }
     data = {"tasks": tasks, "tasksCount": len(tasks)}
-
-    return render(request, "home.html", {**data, **header})
+    context = generateBasicData(request, "myTasksPage", "myTasks")
+    return render(request, "home.html", {**context, **data})
 
 
 def home(request):
     tasks = Task.objects.all()
 
-    header = {
-        "tabs": dynamicTabs("homePage", request.user),
-        "logo": logo,
-        "title": taskTitles["home"],
-    }
     data = {"tasks": tasks, "tasksCount": len(tasks)}
-
-    return render(request, "home.html", {**data, **header})
+    context = generateBasicData(request, "homePage", "home")
+    return render(request, "home.html", {**context, **data})
 
 
 def task(request, taskId):
     task = Task.objects.get(id=taskId)
     comments = Comment.objects.filter(task=taskId, hidden=False)
 
-    header = {
-        "tabs": dynamicTabs("taskPage", request.user),
-        "logo": logo,
-        "title": f"{taskTitles['task']} {task.title}",
-    }
     data = {
+        "form": CommentForm(),
         "task": task,
         "comments": comments,
         "commentsCount": len(comments),
-        "user": request.user,
     }
-    form = {"form": CommentForm()}
-
-    return render(request, "taskPage.html", {**header, **data, **form})
+    context = generateBasicData(
+        request, "taskPage", f"{taskTitles['task']} {task.title}"
+    )
+    return render(request, "taskPage.html", {**context, **data})
 
 
 @login_required
@@ -108,13 +89,10 @@ def editTask(request, taskId):
             else:
                 return HttpResponseForbidden()
         else:
-            header = {
-                "tabs": dynamicTabs("editTaskPage", request.user),
-                "logo": logo,
-                "title": f"{taskTitles['edit']} {task.title}",
-            }
             data = {"form": TaskForm(instance=task)}
-
-            return render(request, "taskForm.html", {**data, **header})
+            context = generateBasicData(
+                request, "editTaskPage", f"{taskTitles['edit']} {task.title}"
+            )
+            return render(request, "taskForm.html", {**data, **context})
     else:
         return HttpResponseForbidden()

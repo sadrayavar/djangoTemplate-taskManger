@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime, date, time
+from datetime import date, time
 from django.core.validators import MinValueValidator
 from user.models import User
 from taskManager.validator import validateReserved, validateNumber

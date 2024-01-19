@@ -1,8 +1,21 @@
 from django.core.exceptions import ValidationError
-from taskManager.constant import reservedWords
+
+reservedWords = [
+    "add",
+    "delete",
+    "edit",
+    "myTasks",
+    "register",
+    "logout",
+    "login",
+    "profile",
+    "admin",
+    "account",
+]
 
 
 def validateReserved(text):
+    global reservedWords
     if text in reservedWords:
         raise ValidationError("This name is reserved.")
 

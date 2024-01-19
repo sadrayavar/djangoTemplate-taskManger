@@ -9,7 +9,7 @@ class Comment(models.Model):
     text = models.TextField(max_length=1000)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
-    hidden = models.BooleanField(default=False)
+    hidden = models.BooleanField(default=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)

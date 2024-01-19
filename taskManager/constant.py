@@ -1,3 +1,6 @@
+from task.signals import getTaskCount
+
+
 tabs = [
     # fmt: off
     {"show":False, "text": "Back", "staticLink": True, "link": "/", "class": "text-warning"},
@@ -72,15 +75,18 @@ commentTitles = {
 
 searchTitles = {"search": "Search results for"}
 
-reservedWords = [
-    "add",
-    "delete",
-    "edit",
-    "myTasks",
-    "register",
-    "logout",
-    "login",
-    "profile",
-    "admin",
-    "account",
-]
+titles = {**taskTitles, **profileTitles, **commentTitles, **searchTitles}
+
+
+def generateBasicData(request, tabName, titleName):
+    try:
+        temp = {"title": titles[titleName]}
+    except Exception:
+        temp = {"title": titleName}
+
+    return {
+        **temp,
+        "tabs": dynamicTabs(tabName, request.user),
+        "logo": logo,
+        "taskCount": getTaskCount(),
+    }
