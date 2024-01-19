@@ -21,7 +21,10 @@ def fetchComments():
 
 
 def hideComment(request, commentId):
-    comment = Comment.objects.get(id=commentId)
-    comment.hidden = True if comment.hidden == False else False
-    comment.save()
-    return redirect("adminPage")
+    if request.user.is_superuser:
+        comment = Comment.objects.get(id=commentId)
+        comment.hidden = True if comment.hidden == False else False
+        comment.save()
+        return redirect("adminPage")
+    else:
+        return HttpResponseForbidden()

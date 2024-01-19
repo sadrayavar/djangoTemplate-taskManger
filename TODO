@@ -1,5 +1,6 @@
 - add task counter using signal
 - task approvement section in admin console ( maybe with signal )
+- email notification
 - fix back button
 - style comment form
 - pagination
