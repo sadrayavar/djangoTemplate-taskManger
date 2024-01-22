@@ -1,3 +1,4 @@
+from emailpaper.views import createForm
 from task.signals import getTaskCount
 
 
@@ -89,4 +90,5 @@ def generateBasicData(request, tabName, titleName):
         "tabs": dynamicTabs(tabName, request.user),
         "logo": logo,
         "taskCount": getTaskCount(),
+        "newForm": createForm(),
     }

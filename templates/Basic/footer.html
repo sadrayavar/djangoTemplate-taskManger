@@ -1,7 +1,8 @@
 <footer class="pt-3 mt-2 text-light bg-dark d-flex flex-column align-items-center justify-content-center">
-  <a class="btn btn-sm btn-info"href="#">Back to top</a>
+  <a class="btn btn-sm btn-info" href="#">Back to top</a>
   <p class="text-center border-top pt-3 my-3 w-75">
     Number of tasks: {{ taskCount }}
-    &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&copy; 2023 HERISI Task Manager. All rights reserved for Sadra Yavarzadeh HERISI and Zahra Rostami HERISI.
+    {% include "newspaper.html" %}
+    <p class="mt-3">2023 HERISI Task Manager. All rights reserved for Sadra Yavarzadeh HERISI and Zahra Rostami HERISI.</p>
   </p>
 </footer>

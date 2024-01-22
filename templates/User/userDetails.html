@@ -22,5 +22,12 @@
     {{ form.password2 }}
     <label for="floatingInput">{{ form.password2.label }}</label>
 </div>
+{% comment %} after I enabled newspaper for everyone Im commented this for future editions  {% endcomment %}
+{% comment %} <div class="checkbox mb-3">
+    <label>
+        {{ form.newspaper }}
+        I agree to recieve new task notifications through email.
+    </label>
+</div> {% endcomment %}
 {% for field in form %}<div>{{ field.errors }}</div>{% endfor %}
 <br>

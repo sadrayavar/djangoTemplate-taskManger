@@ -1,0 +1,10 @@
+<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 w-50"
+      action="{% url "newspaperPage" %}"
+      method="post">
+  {% csrf_token %}
+  <div class="form-floating bottom-form w-100">
+    {{ newForm.email }}
+    <label for="floatingInput">{{ newForm.email.label }}</label>
+  </div>
+  {{ newForm.errors }}
+</form>

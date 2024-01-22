@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser, User
+from .models import CustomUser
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 mainAttr = {
@@ -31,15 +31,11 @@ class UserRegistratoinForm(UserCreationForm):
         ),
         label="Password confirmation",
     )
+    newspaper = forms.BooleanField(required=False)
 
     class Meta:
-        model = User
-        fields = (
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-        )
+        model = CustomUser
+        fields = ("username", "first_name", "last_name", "email", "newspaper")
         widgets = {
             "username": forms.TextInput(
                 attrs={
@@ -101,7 +97,7 @@ class UserEditionForm(UserChangeForm):
     )
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             "username",
             "first_name",

@@ -1,5 +1,6 @@
+- fix custom user model usage
 - email notification for those who agreed to recieve email
-- task approvement section in admin console ( maybe with signal )
+- task approvement section in admin console
 - fix back button
 - style comment form
 - fix search

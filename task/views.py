@@ -6,7 +6,6 @@ from .forms import TaskForm
 from .models import Task
 from comment.forms import CommentForm
 from comment.models import Comment
-from .signals import getTaskCount
 
 
 @login_required

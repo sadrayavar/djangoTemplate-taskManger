@@ -16,6 +16,7 @@ def taskAddHandler(sender, instance, created, *args, **kwargs):
     global taskCount
     if created:
         taskCount += 1
+        print("########################", f"Task {instance.title} is created.\n")
 
 
 @receiver(post_delete, sender=Task)
@@ -23,3 +24,4 @@ def taskDeleteHandler(sender, instance, *args, **kwargs):
     print("object deleted")
     global taskCount
     taskCount -= 1
+    print("########################", f"Task {instance.title} is removed.\n")
