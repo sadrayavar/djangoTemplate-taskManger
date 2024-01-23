@@ -15,7 +15,6 @@ def addTask(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
-            task.approved = request.user.is_superuser
             task.save()
             return redirect("homePage")
     else:
