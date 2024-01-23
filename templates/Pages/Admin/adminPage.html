@@ -3,7 +3,7 @@
     {{ title }}
 {% endblock title %}
 {% block header %}
-    {% include "header.html" with tabs=tabs title=title %}
+    {% include "header.html" %}
 {% endblock header %}
 {% block content %}
     <div class="btn-group">
@@ -19,10 +19,10 @@
     <hr>
     {% comment %} <hr /> {% endcomment %}
     <h1 class="h3 mb-3 fw-normal text-center">Comments Section</h1>
-    {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False adminConsole=True %}
+    {% include "commentList.html" with myComments=False type="comment" %}
     <hr>
     <h1 class="h3 mb-3 fw-normal text-center">Posts Section</h1>
-    {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False adminConsole=True %}
+    {% include "taskList.html" with type="task" %}
 {% endblock content %}
 {% block footer %}
     {% include "footer.html" %}

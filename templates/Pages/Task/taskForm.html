@@ -3,7 +3,7 @@
   {{ title }}
 {% endblock title %}
 {% block header %}
-  {% include "header.html" with tabs=tabs title=title %}
+  {% include "header.html" %}
 {% endblock header %}
 {% block content %}
   <h1 class="h1">Add Task</h1>
@@ -42,5 +42,5 @@
   </form>
 {% endblock content %}
 {% block footer %}
-    {% include "footer.html" %}
+  {% include "footer.html" %}
 {% endblock footer %}

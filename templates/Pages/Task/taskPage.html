@@ -3,13 +3,13 @@
     {{ title }}
 {% endblock title %}
 {% block header %}
-    {% include "header.html" with tabs=tabs title=title %}
+    {% include "header.html" %}
 {% endblock header %}
 {% block content %}
-    {% include "task.html" with task=task %}
-    {% include "commentForm.html" with task=task form=form %}
+    {% include "task.html" %}
+    {% include "commentForm.html" %}
     <br>
-    {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False %}
+    {% include "commentList.html" with myComments=False %}
 {% endblock content %}
 {% block footer %}
     {% include "footer.html" %}

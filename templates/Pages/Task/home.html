@@ -3,10 +3,10 @@
     {{ title }}
 {% endblock title %}
 {% block header %}
-    {% include "header.html" with tabs=tabs title=title %}
+    {% include "header.html" %}
 {% endblock header %}
 {% block content %}
-    {% include "taskList.html" with tasks=tasks taskCount=taskCount %}
+    {% include "taskList.html" %}
 {% endblock content %}
 {% block footer %}
     {% include "footer.html" %}

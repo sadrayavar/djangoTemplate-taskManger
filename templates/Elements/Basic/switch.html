@@ -1,0 +1,16 @@
+<form action="{% if type == "task" %}{% url "approveTask" task.id %}{% else %}{% url "hideComment" comment.id %}{% endif %}">
+    <div class="d-flex">
+        <p style="margin-top:5px;">
+            {% if type == "task" %}
+                Approve
+            {% else %}
+                Hidden
+            {% endif %}
+            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </p>
+        <label class="switch">
+            <input type="submit">
+            <span class="switchSlider switchRound {% if comment.hidden %}hidden{% else %}nothidden{% endif %}"></span>
+        </label>
+    </div>
+</form>

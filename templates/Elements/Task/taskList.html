@@ -1,7 +1,7 @@
 {% if tasksCount > 0 %}
     <div class="text-center pb-2 d-flex justify-content-between gap-5 w-100 flex-wrap">
         {% for task in tasks %}
-            {% include "task.html" with task=task %}
+            {% include "task.html" %}
         {% endfor %}
     </div>
 {% else %}

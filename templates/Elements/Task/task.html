@@ -27,19 +27,23 @@
         </p>
         <div class="d-flex justify-content-between align-items-center">
             <small class="text-body-info">{{ task.deadline_date }}</small>
-            {% if request.user == task.user %}
+            {% if adminConsole %}
+                {% include "switch.html" with type="task" %}
+            {% else %}
                 <div class="btn-group">
-                    {% if task.approved %}
-                        <button href="" class="btn btn-sm btn-primary">
-                            <a href="{% url "editTaskPage" task.id %}"
-                               class="text-decoration-none text-light">Edit</a>
-                        </button>
-                        <button href="" class="btn btn-sm btn-danger">
-                            <a href="{% url "deleteTaskPage" task.id %}"
-                               class="text-decoration-none text-light">Delete</a>
-                        </button>
-                    {% else %}
-                        <button class="btn btn-sm btn-warning">Not approved for edition</button>
+                    {% if request.user == task.user %}
+                        {% if task.approved %}
+                            <button href="" class="btn btn-sm btn-primary">
+                                <a href="{% url "editTaskPage" task.id %}"
+                                   class="text-decoration-none text-light">Edit</a>
+                            </button>
+                            <button href="" class="btn btn-sm btn-danger">
+                                <a href="{% url "deleteTaskPage" task.id %}"
+                                   class="text-decoration-none text-light">Delete</a>
+                            </button>
+                        {% else %}
+                            <button class="btn btn-sm btn-warning">Not approved for edition</button>
+                        {% endif %}
                     {% endif %}
                 </div>
             {% endif %}

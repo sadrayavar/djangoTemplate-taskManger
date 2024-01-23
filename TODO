@@ -1,22 +1,6 @@
-- task approvement section in admin console
-- fix back button
-- style comment form
-- fix search
-- pagination
-
-- for future:
-  -- add follower / following
-
-- add message window that disappairs after few seconds for:
-  -- user register
-  -- user deleted
-  -- user edited
-  -- user doesnt exist
-  -- task add
-  -- task deleted
-  -- task edited
-  -- task doesnt exist
-  -- commesnts add
-  -- commesnts deleted
-  -- commesnts edited
-  -- commesnts doesnt exist
+fix back button
+style comment form
+fix search
+pagination
+add follower / following
+messages

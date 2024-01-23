@@ -2,7 +2,7 @@
     {% if commentsCount > 0 %}
         {% if not myComments and not adminConsole %}<h6 class="border-bottom pb-2 mb-4">Comments</h6>{% endif %}
         {% for comment in comments %}
-            {% include "comment.html" with comment=comment myComments=myComments %}
+            {% include "comment.html" %}
         {% endfor %}
     {% else %}
         <h6 class="border-bottom pb-2 mb-4">No comments</h6>

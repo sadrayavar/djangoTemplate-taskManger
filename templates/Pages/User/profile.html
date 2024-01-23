@@ -3,7 +3,7 @@
     {{ title }}
 {% endblock title %}
 {% block header %}
-    {% include "header.html" with tabs=tabs title=title %}
+    {% include "header.html" %}
 {% endblock header %}
 {% block content %}
     {% if editUser %}
@@ -28,7 +28,7 @@
         </h1>
         <form method="post" action="">
             {% csrf_token %}
-            {% include "userDetails.html" with form=form %}
+            {% include "userDetails.html" %}
             {% if editUser %}
                 <button class="btn btn-primary w-100 py-2" type="submit">Submit changes</button>
                 <br>

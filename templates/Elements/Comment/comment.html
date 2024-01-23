@@ -18,7 +18,7 @@
                 {% if myComments and comment.hidden %}
                     &nbsp;&nbsp;&nbsp;
                     <b>
-                      (This comment is made hidden by the admin)
+                        (This comment is made hidden by the admin)
                     </b>
                 {% endif %}
             </strong>{{ comment.text }}
@@ -26,15 +26,7 @@
     </div>
     <div class="d-flex flex-column">
         {% if adminConsole %}
-            <form action="{% url "hideComment" comment.id %}">
-                <div class="d-flex">
-                    <p style="margin-top:5px;">Hidden:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <label class="switch">
-                        <input type="submit">
-                        <span class="switchSlider switchRound {% if comment.hidden %}hidden{% else %}nothidden{% endif %}"></span>
-                    </label>
-                </div>
-            </form>
+            {% include "switch.html" %}
         {% else %}
             {% if comment.user.id == request.user.id and not comment.user == None %}
                 <form action="{% url "editCommentPage" comment.task.id comment.id %}">
