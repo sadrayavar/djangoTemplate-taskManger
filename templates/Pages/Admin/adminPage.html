@@ -16,11 +16,13 @@
                href="{% url 'deleteUserPage' %}">Delete Account</a>
         </button>
     </div>
-    <hr />
+    <hr>
+    {% comment %} <hr /> {% endcomment %}
     <h1 class="h3 mb-3 fw-normal text-center">Comments Section</h1>
     {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False adminConsole=True %}
+    <hr>
     <h1 class="h3 mb-3 fw-normal text-center">Posts Section</h1>
-    <br>
+    {% include "commentList.html" with comments=comments commentsCount=commentsCount myComments=False adminConsole=True %}
 {% endblock content %}
 {% block footer %}
     {% include "footer.html" %}
