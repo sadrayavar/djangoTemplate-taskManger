@@ -13,9 +13,6 @@ def newspaper(request):
         if len(emails) == 0:
             if form.is_valid():
                 form.save()
-                email = form.save(commit=False)
-                email.active = not (email.active)
-                email.save()
 
         # trigger existing email's active property
         elif len(emails) == 1:
