@@ -44,3 +44,9 @@ def email_generator(instance):
     ]
 
     send_mail(subject, "".join(message), from_email, recipient_list)
+
+
+# # # you should comment all of the above codes and uncomment below code before making migrations
+# # # after doing it comment below and uncomment abow codes
+# def getTaskCount():
+#     return
